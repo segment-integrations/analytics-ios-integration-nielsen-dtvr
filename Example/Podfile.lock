@@ -1,0 +1,39 @@
+PODS:
+  - Analytics (3.6.10)
+  - Expecta (1.0.6)
+  - OCHamcrest (7.1.1)
+  - OCMockito (5.1.1):
+    - OCHamcrest (~> 7.0)
+  - Segment-Nielsen-DTVR (0.0.1-beta):
+    - Analytics (~> 3.6)
+  - Specta (1.0.7)
+
+DEPENDENCIES:
+  - Expecta
+  - OCMockito
+  - Segment-Nielsen-DTVR (from `../`)
+  - Specta
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Analytics
+    - Expecta
+    - OCHamcrest
+    - OCMockito
+    - Specta
+
+EXTERNAL SOURCES:
+  Segment-Nielsen-DTVR:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Analytics: 63744ad4afa65c3bcdcdb7a94b62515bde5b3900
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  OCHamcrest: 3506736397451c35d8763ff0a9b13492e544115f
+  OCMockito: eccb29c256cbdd6c7bc206718cbb06ef737daa8b
+  Segment-Nielsen-DTVR: ef4af47f3349a73eb23c9b7efcaef095e475838a
+  Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+
+PODFILE CHECKSUM: ad063ca38feb1bba6ef4739e70601ccd335aec57
+
+COCOAPODS: 1.7.1

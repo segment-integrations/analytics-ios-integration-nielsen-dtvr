@@ -1,0 +1,27 @@
+//
+//  Tests-Prefix.pch
+//  Segment-Nielsen-DTVR
+//
+//  Created by David Hazama on 2019-06-03.
+//
+
+#ifndef Tests_Prefix_pch
+#define Tests_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+
+#import <Specta/Specta.h>
+#import <Expecta/Expecta.h>
+#import <OCMockito/OCMockito.h>
+#import <Analytics/SEGAnalytics.h>
+#import <NielsenAppApi/NielsenAppApi.h>
+#import "SEGNielsenDTVRIntegrationFactory.h"
+#import "SEGNielsenDTVRIntegration.h"
+#import "SEGTrackPayload.h"
+
+#endif
+
+#endif /* Tests_Prefix_pch */
