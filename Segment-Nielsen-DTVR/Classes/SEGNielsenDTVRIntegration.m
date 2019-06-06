@@ -177,7 +177,12 @@
     return [self.nielsen optOutURL];
 }
 
-- (void (^)(NSString *))sendID3Block
+-(void)userOptOutStatus:(NSString *)urlString
+{
+    [self.nielsen userOptOut:urlString];
+}
+
+-(void (^)(NSString *))sendID3Block
 {
     return ^void(NSString *id3Tag) {
         [self.nielsen sendID3:id3Tag];

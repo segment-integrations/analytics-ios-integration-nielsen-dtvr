@@ -238,6 +238,16 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         [verify(mockNielsenAppApi) optOutURL];
     });
     
+    it(@"opts out Nielsen SDK", ^{
+        [integration userOptOutStatus:@"nielsenappsdk://1"];
+        [verify(mockNielsenAppApi) userOptOut:@"nielsenappsdk://1"];
+    });
+    
+    it(@"opts in Nielsen SDK", ^{
+        [integration userOptOutStatus:@"nielsenappsdk://0"];
+        [verify(mockNielsenAppApi) userOptOut:@"nielsenappsdk://0"];
+    });
+    
     it(@"ID3 block tracks sendID3", ^{
         [integration sendID3Block](@"testID3tag");
         [verify(mockNielsenAppApi) sendID3:@"testID3tag"];
