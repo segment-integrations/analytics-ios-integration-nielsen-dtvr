@@ -232,6 +232,16 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         
         [verify(mockNielsenAppApi) stop];
     });
+    
+    it(@"exposes Nielsen opt-out URL", ^{
+        [integration optOutURL];
+        [verify(mockNielsenAppApi) optOutURL];
+    });
+    
+    it(@"ID3 block tracks sendID3", ^{
+        [integration sendID3Block](@"testID3tag");
+        [verify(mockNielsenAppApi) sendID3:@"testID3tag"];
+    });
 });
 
 SpecEnd

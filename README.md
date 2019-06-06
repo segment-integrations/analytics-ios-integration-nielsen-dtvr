@@ -15,6 +15,8 @@ You will need to have a Nielsen representative before getting started.
 
 ### CocoaPods
 
+When using the Nielsen SDK version 6.2.0.0 and above, Nielsen recommends installation via CocoaPods, and Apple recommends using the dynamic framework.
+
 Requirements for CocoaPods:
 Dynamic Framework - version 1.6.1 or higher
 Static Framework - version 1.4.0 or higher

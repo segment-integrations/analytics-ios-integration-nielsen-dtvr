@@ -109,6 +109,7 @@
                                                
                                                [nielsen play:channelInfo];
                                                [nielsen loadMetadata:metadata];
+                                               // TODO: Will need to provide this separately to coordinate with timed metadata events
                                                [nielsen sendID3:id3Tag];
     }];
     
@@ -125,6 +126,8 @@
                                                NSString *id3Tag;
                                                
                                                [nielsen play:channelInfo];
+                                               // TODO: Will need to provide this separately to coordinate with timed metadata events
+                                               [nielsen sendID3:id3Tag];
                                                [nielsen sendID3:id3Tag];
                                            }];
     
@@ -167,6 +170,18 @@
             break;
         }
     }
+}
+
+-(NSString *)optOutURL
+{
+    return [self.nielsen optOutURL];
+}
+
+- (void (^)(NSString *))sendID3Block
+{
+    return ^void(NSString *id3Tag) {
+        [self.nielsen sendID3:id3Tag];
+    };
 }
 
 #pragma mark Helpers

@@ -17,5 +17,7 @@
 @property (nonatomic, strong) NielsenAppApi *nielsen;
 
 - (instancetype)initWithSettings:(NSDictionary *)settings andNielsen:(NielsenAppApi *)neilsen;
+- (NSString *)optOutURL;
+- (void (^)(NSString *))sendID3Block;
 
 @end
