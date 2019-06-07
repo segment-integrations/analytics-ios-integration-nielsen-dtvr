@@ -9,8 +9,6 @@
 #import <Analytics/SEGIntegration.h>
 #import <NielsenAppApi/NielsenAppApi.h>
 
-@class NielsenAppApi;
-
 @interface SEGNielsenDTVRIntegration : NSObject <SEGIntegration>
 
 @property (nonatomic, strong) NSDictionary *settings;
