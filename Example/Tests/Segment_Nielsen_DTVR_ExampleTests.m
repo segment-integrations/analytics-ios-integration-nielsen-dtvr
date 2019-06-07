@@ -70,6 +70,25 @@ describe(@"SEGNielsenDTVRIntegration", ^{
                                                       @"adModel": @"2"
                                                       }];
         });
+        
+        it(@"does not set a 1 or 2 when the load_type is incorrect", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"Video Content Started"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"load_type": @"test"
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            [integration track:payload];
+            
+            [verify(mockNielsenAppApi) loadMetadata:@{
+                                                      @"channelName" : @"defaultChannelName",
+                                                      @"type": @"content",
+                                                      @"adModel": @""
+                                                      }];
+        });
     });
     
     
@@ -251,6 +270,25 @@ describe(@"SEGNielsenDTVRIntegration", ^{
     it(@"ID3 block tracks sendID3", ^{
         [integration sendID3Block](@"testID3tag");
         [verify(mockNielsenAppApi) sendID3:@"testID3tag"];
+    });
+    
+    it(@"does not track a bogus event", ^{
+        SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"testevent"
+                                                               properties:@{
+                                                                            @"asset_id" : @"1234",
+                                                                            @"channel": @"defaultChannelName",
+                                                                            @"adModel": @"linear"
+                                                                            }
+                                                                  context:@{}
+                                                             integrations:@{}
+                                    ];
+        
+        [integration track:payload];
+        
+        [verifyCount(mockNielsenAppApi, never()) stop];
+        [(NielsenAppApi *)verifyCount(mockNielsenAppApi, never()) end];
+        [(NielsenAppApi *)verifyCount(mockNielsenAppApi, never()) play:@{}];
+        [verifyCount(mockNielsenAppApi, never()) loadMetadata:@{}];
     });
 });
 
