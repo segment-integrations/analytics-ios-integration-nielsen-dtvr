@@ -128,7 +128,6 @@
                                                [nielsen play:channelInfo];
                                                // TODO: Will need to provide this separately to coordinate with timed metadata events
                                                [nielsen sendID3:id3Tag];
-                                               [nielsen sendID3:id3Tag];
                                            }];
     
     SEGNielsenEventHandler *stopHandler = [[SEGNielsenEventHandler alloc]
