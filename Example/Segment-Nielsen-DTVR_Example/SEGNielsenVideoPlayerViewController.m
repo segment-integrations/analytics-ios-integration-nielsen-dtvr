@@ -17,8 +17,6 @@ static char TimedMetadataObserverContext = 0;
 
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic, strong) AVPlayer *player;
-@property (nonatomic, weak) AVPlayerItem *playerItemRef;
-@property (nonatomic, weak) AVAsset *asset;
 
 @property (nonatomic, strong) NSTimer *controlsTimer;
 @property (nonatomic) BOOL showingControls;

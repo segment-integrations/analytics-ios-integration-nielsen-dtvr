@@ -13,20 +13,11 @@
 
 @interface SEGNielsenMainViewController ()
 
-@property (nonatomic) BOOL showingPlayer;
-
-@property (nonatomic, weak) AVPlayer *playerRef;
-@property (nonatomic, weak) AVPlayerItem *playerItemRef;
-
-@property (nonatomic) BOOL wasPaused;
-
 @end
 
 @implementation SEGNielsenMainViewController
 
 #pragma mark - Lifecycle
-
-
 
 -(void)viewDidLoad {
     [super viewDidLoad];
