@@ -339,13 +339,15 @@
 
 -(void)handleAppBackgroundedNotification:(NSNotification *)notification
 {
-    NSLog(@"LOG: tracking Application Backgrounded");
     if (self.isPlaying) {
         // Default behaviour is to pause on background, no auto-resume in this sample
         self.isPlaying = NO;
         [self updatePlayPauseButton:NO];
     }
+    NSLog(@"LOG: tracking Application Backgrounded");
     [[SEGAnalytics sharedAnalytics] track:@"Application Backgrounded"];
+    NSLog(@"LOG: tracking Video Playback Interrupted");
+    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Interrupted" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
 }
 
 #pragma mark Keypath Observers
