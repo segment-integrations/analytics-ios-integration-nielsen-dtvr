@@ -49,12 +49,6 @@
     }
 }
 
--(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
-{
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//    AVLayerVideoGravity gravity = size.width > size.height ? AVLayerVideoGravityResizeAspectFill : AVLayerVideoGravityResizeAspect;
-}
-
 -(void)viewDidLayoutSubviews
 {
     if (self.playerLayer) {
@@ -72,7 +66,7 @@
 -(IBAction)playPauseButtonTapped:(id)sender
 {
     if (self.isPlaying) {
-        [self pause];
+        [self pauseAndTrack:YES];
     }
     else {
         [self play];
@@ -112,11 +106,18 @@
 
 -(void)pause
 {
+    [self pauseAndTrack:NO];
+}
+
+-(void)pauseAndTrack:(BOOL)trackEvent
+{
     self.isPlaying = NO;
     [self.player pause];
     [self updatePlayPauseButton:NO];
-    NSLog(@"LOG: tracking playback paused");
-    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Paused" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+    if (trackEvent) {
+        NSLog(@"LOG: tracking playback paused");
+        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Paused" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+    }
 }
 
 -(void)closePlayer
@@ -230,6 +231,10 @@
 
 -(void)handleSliderChanged:(id)sender forEvent:(UIEvent *)event
 {
+    if (self.isPlaying) {
+        [self pause];
+    }
+    
     [self updateProgressWithCurrent:self.progressSlider.value duration:self.model.duration];
     
     UITouch *touch = [[event allTouches] anyObject];
@@ -269,7 +274,9 @@
 
 -(void)handlePlaybackEndedNotification:(NSNotification *)notification
 {
-    // Send SEG Completed
+    NSLog(@"LOG: tracking content completed");
+    [[SEGAnalytics sharedAnalytics] track:@"Video Content Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+    [self closePlayer];
 }
 
 -(void)handleAppBackgroundedNotification:(NSNotification *)notification
