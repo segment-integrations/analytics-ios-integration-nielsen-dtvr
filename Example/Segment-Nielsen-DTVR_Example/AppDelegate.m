@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"7swFFiP2ztGBmiMFFjxNNPETgKEcypLX"];
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"WRITE_KEY_HERE"];
     [configuration use:[SEGNielsenDTVRIntegrationFactory instance]];
     configuration.trackApplicationLifecycleEvents = YES;
     configuration.recordScreenViews = YES;
