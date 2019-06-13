@@ -332,7 +332,9 @@
 {
     NSLog(@"LOG: tracking Video Content Completed");
     [[SEGAnalytics sharedAnalytics] track:@"Video Content Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
-    [self closePlayer];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_MSEC * 500), dispatch_get_main_queue(), ^{
+        [self closePlayer];
+    });
 }
 
 -(void)handleAppBackgroundedNotification:(NSNotification *)notification
