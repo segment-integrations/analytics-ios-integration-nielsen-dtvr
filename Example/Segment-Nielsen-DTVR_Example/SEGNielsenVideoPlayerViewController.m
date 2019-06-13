@@ -9,6 +9,8 @@
 #import <Analytics/SEGAnalytics.h>
 #import "SEGNielsenVideoPlayerViewController.h"
 
+static char TimedMetadataObserverContext = 0;
+
 @interface SEGNielsenVideoPlayerViewController ()
 
 @property (nonatomic, strong) NSDictionary *playbackHandlers;
@@ -355,9 +357,9 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     id newValue = [change objectForKey:NSKeyValueChangeNewKey];
-    void (^statusHandler)(id newValue) = [self.playbackHandlers valueForKey:keyPath];
+    void (^statusHandler)(id newValue, void *context) = [self.playbackHandlers valueForKey:keyPath];
     if (statusHandler != nil) {
-        statusHandler(newValue);
+        statusHandler(newValue, context);
     }
     else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -410,6 +412,7 @@
     [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
     [playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
     [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    [playerItem addObserver:self forKeyPath:@"timedMetadata" options:NSKeyValueObservingOptionNew context:&TimedMetadataObserverContext];
 }
 
 -(void)setupNotificationObservers
@@ -429,7 +432,7 @@
     };
     
     self.playbackHandlers = @{
-                              @"status": ^(id newValue) {
+                              @"status": ^(id newValue, void *context) {
                                   if (!isNumberClass(newValue)) {
                                       return;
                                   }
@@ -453,7 +456,7 @@
                                       }
                                   }
                               },
-                              @"playbackBufferEmpty": ^(id newValue) {
+                              @"playbackBufferEmpty": ^(id newValue, void *context) {
                                   if (!isNumberClass(newValue)) {
                                       return;
                                   }
@@ -462,7 +465,7 @@
                                   BOOL playbackBufferEmpty = [newPlaybackBufferEmpty boolValue];
                                   [self handleBufferWithPlaybackLikelyToKeepUp:[[self.player currentItem] isPlaybackLikelyToKeepUp] isPlaybackBufferEmpty:playbackBufferEmpty];
                               },
-                              @"playbackLikelyToKeepUp": ^(id newValue) {
+                              @"playbackLikelyToKeepUp": ^(id newValue, void *context) {
                                   if (!isNumberClass(newValue)) {
                                       return;
                                   }
@@ -470,7 +473,32 @@
                                   NSNumber *newPlaybackLikelyToKeepUp = (NSNumber *)newValue;
                                   BOOL playbackLikelyToKeepUp = [newPlaybackLikelyToKeepUp boolValue];
                                   [self handleBufferWithPlaybackLikelyToKeepUp:playbackLikelyToKeepUp isPlaybackBufferEmpty:[[self.player currentItem] isPlaybackBufferEmpty]];
-                              }
+                              },
+                              @"timedMetadata": ^(id newValue, void *context) {
+                                  if (context != &TimedMetadataObserverContext || newValue != [NSNull null]) {
+                                      return;
+                                  }
+                                  
+                                  NSArray<AVMetadataItem *> *timedMetadata = (NSArray *)newValue;
+                                  for (AVMetadataItem *metadataItem in timedMetadata) {
+                                      id extraAttributeType = [metadataItem extraAttributes];
+                                      
+                                      NSString *extraString = nil;
+                                      if ([extraAttributeType isKindOfClass:[NSDictionary class]]) {
+                                          // Expecting content to contain plists encoded as timed metadata
+                                          extraString = [extraAttributeType valueForKey:@"info"];
+                                      }
+                                      else if ([extraAttributeType isKindOfClass:[NSString class]]) {
+                                          extraString = extraAttributeType;
+                                      }
+                                      
+                                      NSString *key = [NSString stringWithFormat:@"%@", [metadataItem key]];
+                                      
+                                      if ([key isEqualToString:@"PRIV"] && [extraString rangeOfString:@"www.nielsen.com"].length > 0) {
+                                          // TODO Add sendID3 here
+                                      }
+                                  }
+                              },
                               };
 }
 
@@ -533,6 +561,7 @@
         [playerItem removeObserver:self forKeyPath:@"status"];
         [playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
         [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
+        [playerItem removeObserver:self forKeyPath:@"timedMetadata"];
     }
     if (self.progressSlider) {
         [self.progressSlider removeTarget:self action:@selector(handleSliderChanged:forEvent:) forControlEvents:UIControlEventValueChanged];
