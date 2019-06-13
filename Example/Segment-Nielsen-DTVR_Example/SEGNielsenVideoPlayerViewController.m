@@ -443,7 +443,7 @@
                                           break;
                                       }
                                       case AVPlayerItemStatusFailed: {
-                                          // Send SEG Stop?
+                                          // Handle failure here
                                           break;
                                       }
                                       case AVPlayerItemStatusUnknown: {
