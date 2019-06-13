@@ -437,6 +437,7 @@
                                   switch (status) {
                                       case AVPlayerItemStatusReadyToPlay: {
                                           [self showLoading:NO animated:YES];
+                                          NSLog(@"tracking Video Content Started");
                                           [[SEGAnalytics sharedAnalytics] track:@"Video Content Started" properties:[self trackingPropertiesForModel]];
                                           self.startedPlaying = YES;
                                           break;
