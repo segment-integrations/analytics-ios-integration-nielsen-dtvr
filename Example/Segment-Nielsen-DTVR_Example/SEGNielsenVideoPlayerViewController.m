@@ -44,6 +44,7 @@
     
     if (self.model) {
         [self setupPlayerWithModel:self.model];
+        [self resetPlayer];
         [self play:YES];
     }
 }
@@ -173,6 +174,7 @@
     
     [self.currentProgressLabel setText:[self formatSecondsToTime:current]];
     [self.remainingProgressLabel setText:[self formatSecondsToTime:remaining]];
+    [self.progressSlider setValue:(float)current];
 }
 
 -(NSString *)formatSecondsToTime:(NSInteger)seconds
@@ -222,6 +224,13 @@
 #pragma mark -
 #pragma mark - Setup
 #pragma mark -
+
+-(void)resetPlayer
+{
+    if (self.model) {
+        [self setupSliderWithMinimum:0 maximum:(float)self.model.duration current:0];
+    }
+}
 
 -(void)setupPlayerWithModel:(SEGVideoModel *)model
 {
@@ -305,6 +314,13 @@
                                   [[SEGAnalytics sharedAnalytics] track:event];
                               }
                               };
+}
+
+-(void)setupSliderWithMinimum:(float)minimum maximum:(float)maximum current:(float)current
+{
+    [self.progressSlider setMinimumValue:minimum];
+    [self.progressSlider setMaximumValue:maximum];
+    [self.progressSlider setValue:current];
 }
 
 -(void)setupGestureHandlers
