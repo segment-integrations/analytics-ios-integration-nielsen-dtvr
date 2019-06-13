@@ -31,8 +31,9 @@
 
 -(id)init
 {
-    self = [super init];
-    self.integrationsByAppId = [[NSMutableDictionary alloc] init];
+    if (self = [super init]) {
+        self.integrationsByAppId = [[NSMutableDictionary alloc] init];
+    }
     return self;
 }
 

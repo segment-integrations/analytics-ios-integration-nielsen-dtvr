@@ -21,6 +21,7 @@
 		6DBB55AD22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */; };
 		6DF5764422B1AE1B00638A0F /* SEGVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */; };
 		8E6DD7221DCCEA25F2A51398 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
+		9AEAC3183CAE1EDE5DF09BE9 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
 		CACD3667E641A332538C9B0E /* Pods_Segment_Nielsen_DTVR_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */; };
 /* End PBXBuildFile section */
 

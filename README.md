@@ -70,9 +70,9 @@ Nielsen also requires the following frameworks, which must be included into Link
 
 ## Integration
 
-`#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>`
+Register the factory with the Segment SDK in the `application:didFinishLaunchingWithOptions` method of your `AppDelegate`:
 
-Then register the factory with the Segment SDK:
+`#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>`
 
 ```
 NSString *const SEGMENT_WRITE_KEY = @" ... ";
