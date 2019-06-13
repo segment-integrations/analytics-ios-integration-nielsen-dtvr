@@ -20,7 +20,9 @@
 
 @property (nonatomic, strong) NSTimer *controlsTimer;
 @property (nonatomic) BOOL showingControls;
+@property (nonatomic) BOOL startedPlaying;
 @property (nonatomic) BOOL isPlaying;
+@property (nonatomic) BOOL startedScrubbing;
 
 @end
 
@@ -43,7 +45,7 @@
     if (self.model) {
         [self setupPlayerWithModel:self.model];
         [self resetPlayer];
-        [self play:YES];
+        [self playFromInitial:YES resumedFromSeek:NO];
     }
 }
 
@@ -89,20 +91,22 @@
 
 -(void)play
 {
-    [self play:NO];
+    [self playResumedFromSeek:NO];
 }
 
--(void)play:(BOOL)initial
+-(void)playResumedFromSeek:(BOOL)resumedFromSeek
+{
+    [self playFromInitial:NO resumedFromSeek:resumedFromSeek];
+}
+
+-(void)playFromInitial:(BOOL)initial resumedFromSeek:(BOOL)resumedFromSeek
 {
     self.isPlaying = YES;
     [self.player play];
     [self updatePlayPauseButton:YES];
-    if (!initial) {
-        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Resumed" properties:@{
-                                                                                     @"asset_id" : self.model.videoId,
-                                                                                     @"channel": self.model.channelName,
-                                                                                     @"load_type": self.model.loadType,
-                                                                                     }];
+    if (!initial && !resumedFromSeek) {
+        NSLog(@"LOG: tracking playback resumed");
+        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Resumed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     }
 }
 
@@ -111,22 +115,15 @@
     self.isPlaying = NO;
     [self.player pause];
     [self updatePlayPauseButton:NO];
-    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Paused" properties:@{
-                                                                                @"asset_id" : self.model.videoId,
-                                                                                @"channel": self.model.channelName,
-                                                                                @"load_type": self.model.loadType,
-                                                                                }];
+    NSLog(@"LOG: tracking playback paused");
+    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Paused" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
 }
 
 -(void)closePlayer
 {
-    [self.player pause];
     [self dismissViewControllerAnimated:YES completion:^{
-        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Completed" properties:@{
-                                                                                       @"asset_id" : self.model.videoId,
-                                                                                       @"channel": self.model.channelName,
-                                                                                       @"load_type": self.model.loadType,
-                                                                                       }];
+        NSLog(@"LOG: tracking completed");
+        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     }];
 }
 
@@ -195,6 +192,33 @@
     return [NSString stringWithFormat:@"%lu%@%02lu%@%02lu", h,@":",m,@":",s];
 }
 
+-(NSMutableDictionary *)trackingPropertiesForModelWithCurrentPlayProgress
+{
+    NSMutableDictionary *baseProperties = [self trackingPropertiesForModel];
+    if (self.player && self.startedPlaying) {
+        [baseProperties addEntriesFromDictionary:@{
+                                                   @"position": [NSNumber numberWithInteger:[self getCurrentPlayerTimeSeconds]],
+                                                   }];
+    }
+    
+    return baseProperties;
+}
+
+-(NSMutableDictionary *)trackingPropertiesForModel
+{
+    if (self.model) {
+        return [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                 @"asset_id" : self.model.videoId,
+                                                                 @"channel": self.model.channelName,
+                                                                 @"load_type": self.model.loadType,
+                                                                 @"title": self.model.title,
+                                                                 @"description": self.model.videoDescription,
+                                                                 @"total_length": [NSNumber numberWithInteger:self.model.duration],
+                                                                 }];
+    }
+    return [[NSMutableDictionary alloc] init];
+}
+
 #pragma mark - Handlers
 #pragma mark -
 #pragma mark Gesture Handlers
@@ -206,32 +230,30 @@
 
 -(void)handleSliderChanged:(id)sender forEvent:(UIEvent *)event
 {
-    if ([self isPlaying]) {
-        [self pause];
-    }
-    
     [self updateProgressWithCurrent:self.progressSlider.value duration:self.model.duration];
     
     UITouch *touch = [[event allTouches] anyObject];
     if (touch) {
         UITouchPhase phase = [touch phase];
         switch (phase) {
+            case UITouchPhaseBegan: {
+                self.startedScrubbing = YES;
+            }
             case UITouchPhaseEnded: {
-                [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started" properties:@{
-                                                                                                  @"asset_id" : self.model.videoId,
-                                                                                                  @"channel": self.model.channelName,
-                                                                                                  @"load_type": self.model.loadType,
-                                                                                                  @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
-                                                                                                  @"position": [NSNumber numberWithInt:[self getCurrentPlayerTimeSeconds]]
-                                                                                                  }];
+                NSMutableDictionary *seekStartedProperties = [self trackingPropertiesForModelWithCurrentPlayProgress];
+                [seekStartedProperties addEntriesFromDictionary:@{
+                                                                  @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
+                                                                  }];
+                NSLog(@"LOG: tracking seek started");
+                [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started"
+                                           properties:seekStartedProperties];
+                
                 [self.player seekToTime:CMTimeMake(self.progressSlider.value, 1) completionHandler:^(BOOL finished) {
-                    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed" properties:@{
-                                                                                                        @"asset_id" : self.model.videoId,
-                                                                                                        @"channel": self.model.channelName,
-                                                                                                        @"load_type": self.model.loadType,
-                                                                                                        @"position": [NSNumber numberWithInt:[self getCurrentPlayerTimeSeconds]]
-                                                                                                        }];
-                    [self play];
+                    NSLog(@"LOG: tracking seek completed");
+                    self.startedScrubbing = NO;
+                    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed"
+                                               properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+                    [self playResumedFromSeek:YES];
                 }];
             }
             default: {
@@ -252,6 +274,7 @@
 
 -(void)handleAppBackgroundedNotification:(NSNotification *)notification
 {
+    NSLog(@"LOG: tracking application backgrounded");
     [[SEGAnalytics sharedAnalytics] track:@"Application Backgrounded"];
 }
 
@@ -286,8 +309,10 @@
     self.player = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:videoUrl]];
     __weak SEGNielsenVideoPlayerViewController *weakSelf = self;
     [self.player addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1) queue:nil usingBlock:^(CMTime time) {
-        NSInteger current = (NSInteger)(time.value / time.timescale);
-        [weakSelf updateProgressWithCurrent:current duration:weakSelf.model.duration];
+        if (!weakSelf.startedScrubbing) {
+            NSInteger current = (NSInteger)(time.value / time.timescale);
+            [weakSelf updateProgressWithCurrent:current duration:weakSelf.model.duration];
+        }
     }];
     [self setupObserversForPlayerItem:[self.player currentItem]];
     
@@ -335,11 +360,9 @@
                                   AVPlayerStatus status = [statusNumber integerValue];
                                   switch (status) {
                                       case AVPlayerItemStatusReadyToPlay: {
-                                          [[SEGAnalytics sharedAnalytics] track:@"Video Content Started" properties:@{
-                                                                                                                      @"asset_id" : self.model.videoId,
-                                                                                                                      @"channel": self.model.channelName,
-                                                                                                                      @"load_type": self.model.loadType,
-                                                                                                                      }];
+                                          NSLog(@"LOG: tracking content started");
+                                          [[SEGAnalytics sharedAnalytics] track:@"Video Content Started" properties:[self trackingPropertiesForModel]];
+                                          self.startedPlaying = YES;
                                           break;
                                       }
                                       case AVPlayerItemStatusFailed: {
@@ -359,7 +382,8 @@
                                   NSNumber *newPlaybackBufferEmpty = (NSNumber *)newValue;
                                   BOOL playbackBufferEmpty = [newPlaybackBufferEmpty boolValue];
                                   NSString *event = playbackBufferEmpty ? @"Video Playback Buffer Started" : @"Video Playback Buffer Completed";
-                                  [[SEGAnalytics sharedAnalytics] track:event];
+                                  NSLog(@"LOG: tracking: %@", event);
+                                  [[SEGAnalytics sharedAnalytics] track:event properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
                               }
                               };
 }
