@@ -99,7 +99,7 @@
     [self.player play];
     [self updatePlayPauseButton:YES];
     if (!initial && !resumedFromSeek) {
-        NSLog(@"LOG: tracking playback resumed");
+        NSLog(@"LOG: tracking Video Playback Resumed");
         [[SEGAnalytics sharedAnalytics] track:@"Video Playback Resumed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     }
 }
@@ -115,7 +115,7 @@
     [self.player pause];
     [self updatePlayPauseButton:NO];
     if (trackEvent) {
-        NSLog(@"LOG: tracking playback paused");
+        NSLog(@"LOG: tracking Video Playback Paused");
         [[SEGAnalytics sharedAnalytics] track:@"Video Playback Paused" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     }
 }
@@ -123,7 +123,7 @@
 -(void)closePlayer
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"LOG: tracking completed");
+        NSLog(@"LOG: tracking Video Playback Completed");
         [[SEGAnalytics sharedAnalytics] track:@"Video Playback Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     }];
 }
@@ -249,12 +249,12 @@
                 [seekStartedProperties addEntriesFromDictionary:@{
                                                                   @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
                                                                   }];
-                NSLog(@"LOG: tracking seek started");
+                NSLog(@"LOG: tracking Video Playback Seek Started");
                 [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started"
                                            properties:seekStartedProperties];
                 
                 [self.player seekToTime:CMTimeMake(self.progressSlider.value, 1) completionHandler:^(BOOL finished) {
-                    NSLog(@"LOG: tracking seek completed");
+                    NSLog(@"LOG: tracking Video Playback Seek Completed");
                     self.startedScrubbing = NO;
                     [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed"
                                                properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
@@ -274,14 +274,19 @@
 
 -(void)handlePlaybackEndedNotification:(NSNotification *)notification
 {
-    NSLog(@"LOG: tracking content completed");
+    NSLog(@"LOG: tracking Video Content Completed");
     [[SEGAnalytics sharedAnalytics] track:@"Video Content Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
     [self closePlayer];
 }
 
 -(void)handleAppBackgroundedNotification:(NSNotification *)notification
 {
-    NSLog(@"LOG: tracking application backgrounded");
+    NSLog(@"LOG: tracking Application Backgrounded");
+    if (self.isPlaying) {
+        // Default behaviour is to pause on background, no auto-resume in this sample
+        self.isPlaying = NO;
+        [self updatePlayPauseButton:NO];
+    }
     [[SEGAnalytics sharedAnalytics] track:@"Application Backgrounded"];
 }
 
@@ -367,7 +372,7 @@
                                   AVPlayerStatus status = [statusNumber integerValue];
                                   switch (status) {
                                       case AVPlayerItemStatusReadyToPlay: {
-                                          NSLog(@"LOG: tracking content started");
+                                          NSLog(@"LOG: tracking Video Content Started");
                                           [[SEGAnalytics sharedAnalytics] track:@"Video Content Started" properties:[self trackingPropertiesForModel]];
                                           self.startedPlaying = YES;
                                           break;
@@ -389,7 +394,7 @@
                                   NSNumber *newPlaybackBufferEmpty = (NSNumber *)newValue;
                                   BOOL playbackBufferEmpty = [newPlaybackBufferEmpty boolValue];
                                   NSString *event = playbackBufferEmpty ? @"Video Playback Buffer Started" : @"Video Playback Buffer Completed";
-                                  NSLog(@"LOG: tracking: %@", event);
+                                  NSLog(@"LOG: tracking %@", event);
                                   [[SEGAnalytics sharedAnalytics] track:event properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
                               }
                               };
