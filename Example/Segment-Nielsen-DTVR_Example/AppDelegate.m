@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"7swFFiP2ztGBmiMFFjxNNPETgKEcypLX"];
+    [configuration use:[SEGNielsenDTVRIntegrationFactory instance]];
+    configuration.trackApplicationLifecycleEvents = YES;
+    configuration.recordScreenViews = YES;
+    [SEGAnalytics setupWithConfiguration:configuration];
     return YES;
 }
 
