@@ -20,9 +20,7 @@
 
 @property (nonatomic, strong) NSTimer *controlsTimer;
 @property (nonatomic) BOOL showingControls;
-@property (nonatomic) BOOL startedPlaying;
 @property (nonatomic) BOOL isPlaying;
-@property (nonatomic) BOOL wasPaused;
 
 @end
 
@@ -168,6 +166,17 @@
     [self.playPauseButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
 
+-(int)getCurrentPlayerTimeSeconds
+{
+    if (self.player) {
+        CMTime currentTime = [self.player currentTime];
+        int currentTimeSeconds = (int)currentTime.value / currentTime.timescale;
+        return currentTimeSeconds;
+    }
+    
+    return 0;
+}
+
 -(void)updateProgressWithCurrent:(NSInteger )current duration:(NSInteger )duration
 {
     NSInteger remaining = duration - current;
@@ -193,6 +202,45 @@
 -(void)handleTapGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
     [self showControls:!self.showingControls];
+}
+
+-(void)handleSliderChanged:(id)sender forEvent:(UIEvent *)event
+{
+    if ([self isPlaying]) {
+        [self pause];
+    }
+    
+    [self updateProgressWithCurrent:self.progressSlider.value duration:self.model.duration];
+    
+    UITouch *touch = [[event allTouches] anyObject];
+    if (touch) {
+        UITouchPhase phase = [touch phase];
+        switch (phase) {
+            case UITouchPhaseEnded: {
+                [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started" properties:@{
+                                                                                                  @"asset_id" : self.model.videoId,
+                                                                                                  @"channel": self.model.channelName,
+                                                                                                  @"load_type": self.model.loadType,
+                                                                                                  @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
+                                                                                                  @"position": [NSNumber numberWithInt:[self getCurrentPlayerTimeSeconds]]
+                                                                                                  }];
+                [self.player seekToTime:CMTimeMake(self.progressSlider.value, 1) completionHandler:^(BOOL finished) {
+                    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed" properties:@{
+                                                                                                        @"asset_id" : self.model.videoId,
+                                                                                                        @"channel": self.model.channelName,
+                                                                                                        @"load_type": self.model.loadType,
+                                                                                                        @"position": [NSNumber numberWithInt:[self getCurrentPlayerTimeSeconds]]
+                                                                                                        }];
+                    [self play];
+                }];
+            }
+            default: {
+                break;
+            }
+        }
+    }
+    
+    [self refreshControlsTimer];
 }
 
 #pragma mark Notification Handlers
@@ -327,6 +375,8 @@
 {
     UIGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
     [self.view addGestureRecognizer:gestureRecognizer];
+    
+    [self.progressSlider addTarget:self action:@selector(handleSliderChanged:forEvent:) forControlEvents:UIControlEventValueChanged];
 }
 
 -(void)setupUI
