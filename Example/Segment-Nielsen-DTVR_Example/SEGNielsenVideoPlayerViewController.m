@@ -313,6 +313,9 @@
     if (self.model) {
         [self setupSliderWithMinimum:0 maximum:(float)self.model.duration current:0];
     }
+    self.isPlaying = NO;
+    self.startedScrubbing = NO;
+    self.startedPlaying = NO;
 }
 
 -(void)setupPlayerWithModel:(SEGVideoModel *)model
@@ -334,6 +337,8 @@
     layer.player = self.player;
     self.playerLayer = layer;
     [self.playerView.layer addSublayer:layer];
+    
+    [self.titleLabel setText:model.title];
 }
 
 -(void)setupObserversForPlayerItem:(AVPlayerItem *)playerItem
@@ -419,6 +424,9 @@
 {
     [self.view setBackgroundColor:[UIColor colorWithWhite:0 alpha:1]];
     [self.playerView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0]];
+    
+    [self.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [self.titleLabel setTextColor:[UIColor colorWithWhite:1 alpha:1]];
     
     [self.currentProgressLabel setFont:[UIFont systemFontOfSize:12]];
     [self.currentProgressLabel setTextColor:[UIColor colorWithWhite:1 alpha:1]];

@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UIView *playerView;
 @property (nonatomic, weak) IBOutlet UIView *controlsOverlay;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
 @property (nonatomic, weak) IBOutlet UIButton *playPauseButton;
 @property (nonatomic, weak) IBOutlet UISlider *progressSlider;

@@ -65,6 +65,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tj1-5v-4QP">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hri-23-E85">
+                                        <rect key="frame" x="16" y="69" width="382" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wYD-7H-hEN">
                                         <rect key="frame" x="8" y="8" width="45" height="45"/>
                                         <constraints>
@@ -104,16 +110,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="MHb-bY-9Oc" secondAttribute="bottom" constant="16" id="1Dp-F2-lzs"/>
+                                    <constraint firstItem="hri-23-E85" firstAttribute="leading" secondItem="Tj1-5v-4QP" secondAttribute="leading" constant="16" id="26y-KZ-O0S"/>
                                     <constraint firstItem="wYD-7H-hEN" firstAttribute="leading" secondItem="Tj1-5v-4QP" secondAttribute="leading" constant="8" id="2YM-IV-yif"/>
                                     <constraint firstItem="MHb-bY-9Oc" firstAttribute="leading" secondItem="Tj1-5v-4QP" secondAttribute="leading" constant="50" id="7qF-FK-7O0"/>
                                     <constraint firstItem="3up-ph-g5D" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="b4r-dD-U8k" secondAttribute="trailing" priority="250" constant="50" id="Fj6-YX-WXw"/>
                                     <constraint firstItem="b4r-dD-U8k" firstAttribute="leading" secondItem="Tj1-5v-4QP" secondAttribute="leading" constant="16" id="Gsh-pQ-ZMP"/>
                                     <constraint firstAttribute="trailing" secondItem="MHb-bY-9Oc" secondAttribute="trailing" constant="50" id="JU8-N3-pjc"/>
+                                    <constraint firstAttribute="trailing" secondItem="hri-23-E85" secondAttribute="trailing" constant="16" id="PEs-DV-abE"/>
                                     <constraint firstItem="yqH-cu-Ryh" firstAttribute="centerX" secondItem="Tj1-5v-4QP" secondAttribute="centerX" id="QPM-8y-NQE"/>
                                     <constraint firstItem="wYD-7H-hEN" firstAttribute="top" secondItem="Tj1-5v-4QP" secondAttribute="top" constant="8" id="Vam-2O-jAQ"/>
                                     <constraint firstItem="MHb-bY-9Oc" firstAttribute="top" secondItem="b4r-dD-U8k" secondAttribute="bottom" constant="10" id="dZt-DK-gIU"/>
                                     <constraint firstItem="yqH-cu-Ryh" firstAttribute="centerY" secondItem="Tj1-5v-4QP" secondAttribute="centerY" id="nGI-Vw-m83"/>
                                     <constraint firstAttribute="trailing" secondItem="3up-ph-g5D" secondAttribute="trailing" constant="16" id="pPJ-yD-kJa"/>
+                                    <constraint firstItem="hri-23-E85" firstAttribute="top" secondItem="wYD-7H-hEN" secondAttribute="bottom" constant="16" id="ttr-uc-GRa"/>
                                     <constraint firstItem="MHb-bY-9Oc" firstAttribute="top" secondItem="3up-ph-g5D" secondAttribute="bottom" constant="10" id="y1y-hQ-A6w"/>
                                 </constraints>
                             </view>
@@ -139,6 +148,7 @@
                         <outlet property="playerView" destination="AzC-tJ-0n4" id="i6A-5q-29m"/>
                         <outlet property="progressSlider" destination="MHb-bY-9Oc" id="u8F-Fk-jfm"/>
                         <outlet property="remainingProgressLabel" destination="3up-ph-g5D" id="v5s-n2-7h2"/>
+                        <outlet property="titleLabel" destination="hri-23-E85" id="roD-Ch-hXS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FZL-HT-g3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
