@@ -530,6 +530,7 @@
         AVPlayerItem *playerItem = [self.player currentItem];
         [playerItem removeObserver:self forKeyPath:@"status"];
         [playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
+        [playerItem removeObserver:self forKeyPath:@"playbackLikelyToKeepUp"];
     }
     if (self.progressSlider) {
         [self.progressSlider removeTarget:self action:@selector(handleSliderChanged:forEvent:) forControlEvents:UIControlEventValueChanged];
