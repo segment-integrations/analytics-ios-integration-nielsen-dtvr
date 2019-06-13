@@ -23,6 +23,9 @@
 @property (nonatomic) BOOL startedPlaying;
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) BOOL startedScrubbing;
+@property (nonatomic) BOOL lastKnownPlaybackLikelyToKeepUp;
+@property (nonatomic) BOOL lastKnownPlaybackBufferEmpty;
+@property (nonatomic) BOOL startedBuffering;
 
 @end
 
@@ -44,6 +47,7 @@
     
     if (self.model) {
         [self setupPlayerWithModel:self.model];
+        [self showLoading:YES animated:YES];
         [self resetPlayer];
         [self playFromInitial:YES resumedFromSeek:NO];
     }
@@ -72,12 +76,6 @@
         [self play];
     }
     
-    [self refreshControlsTimer];
-}
-
-
--(IBAction)sliderUpdated:(id)sender
-{
     [self refreshControlsTimer];
 }
 
@@ -144,6 +142,31 @@
             [self.controlsTimer invalidate];
             self.controlsTimer = nil;
         }
+    }
+}
+
+-(void)showLoading:(BOOL)loading animated:(BOOL)animated
+{
+    float alpha = loading ? 1.0 : 0;
+    
+    void (^completion)(void) = ^void() {
+        [self.activityIndicator setAlpha:alpha];
+        if (loading) {
+            [self.activityIndicator setHidden:NO];
+            [self.activityIndicator startAnimating];
+        }
+        else {
+            [self.activityIndicator stopAnimating];
+        }
+    };
+    
+    if (animated) {
+        [UIView animateWithDuration:0.3 animations:^{
+            completion();
+        }];
+    }
+    else {
+        completion();
     }
 }
 
@@ -236,6 +259,7 @@
     }
     
     [self updateProgressWithCurrent:self.progressSlider.value duration:self.model.duration];
+    [self refreshControlsTimer];
     
     UITouch *touch = [[event allTouches] anyObject];
     if (touch) {
@@ -244,30 +268,62 @@
             case UITouchPhaseBegan: {
                 self.startedScrubbing = YES;
             }
-            case UITouchPhaseEnded: {
-                NSMutableDictionary *seekStartedProperties = [self trackingPropertiesForModelWithCurrentPlayProgress];
-                [seekStartedProperties addEntriesFromDictionary:@{
-                                                                  @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
-                                                                  }];
-                NSLog(@"LOG: tracking Video Playback Seek Started");
-                [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started"
-                                           properties:seekStartedProperties];
-                
-                [self.player seekToTime:CMTimeMake(self.progressSlider.value, 1) completionHandler:^(BOOL finished) {
-                    NSLog(@"LOG: tracking Video Playback Seek Completed");
-                    self.startedScrubbing = NO;
-                    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed"
-                                               properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
-                    [self playResumedFromSeek:YES];
-                }];
-            }
             default: {
                 break;
             }
         }
     }
+}
+
+-(void)handleSliderEnded:(id)sender
+{
+    NSMutableDictionary *seekStartedProperties = [self trackingPropertiesForModelWithCurrentPlayProgress];
+    [seekStartedProperties addEntriesFromDictionary:@{
+                                                      @"seek_position":[NSNumber numberWithFloat:self.progressSlider.value],
+                                                      }];
+    NSLog(@"LOG: tracking Video Playback Seek Started");
+    [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Started"
+                               properties:seekStartedProperties];
     
-    [self refreshControlsTimer];
+    [self showLoading:YES animated:YES];
+    [self.player seekToTime:CMTimeMake(self.progressSlider.value, 1) completionHandler:^(BOOL finished) {
+        if (finished) {
+            NSLog(@"LOG: tracking Video Playback Seek Completed");
+            [self showLoading:NO animated:YES];
+            self.startedScrubbing = NO;
+            [[SEGAnalytics sharedAnalytics] track:@"Video Playback Seek Completed"
+                                       properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+            [self playResumedFromSeek:YES];
+        }
+    }];
+}
+
+-(void)handleBufferWithPlaybackLikelyToKeepUp:(BOOL)isPlaybackLikelyToKeepUp
+                        isPlaybackBufferEmpty:(BOOL)isPlaybackBufferEmpty
+{
+    if (!self.startedPlaying) {
+        return;
+    }
+    
+    if (self.lastKnownPlaybackBufferEmpty == isPlaybackBufferEmpty && self.lastKnownPlaybackLikelyToKeepUp == isPlaybackLikelyToKeepUp) {
+        return;
+    }
+    
+    self.lastKnownPlaybackLikelyToKeepUp = isPlaybackLikelyToKeepUp;
+    self.lastKnownPlaybackBufferEmpty = isPlaybackBufferEmpty;
+    
+    if (!isPlaybackLikelyToKeepUp && isPlaybackBufferEmpty && !self.startedBuffering) {
+        self.startedBuffering = YES;
+        [self showLoading:YES animated:YES];
+        NSLog(@"LOG: tracking Video Playback Buffer Started");
+        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Buffer Started" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+    }
+    else if (isPlaybackLikelyToKeepUp && !isPlaybackBufferEmpty && self.startedBuffering) {
+        self.startedBuffering = NO;
+        [self showLoading:NO animated:YES];
+        NSLog(@"LOG: tracking Video Playback Buffer Completed");
+        [[SEGAnalytics sharedAnalytics] track:@"Video Playback Buffer Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+    }
 }
 
 #pragma mark Notification Handlers
@@ -347,6 +403,7 @@
         return;
     }
     
+    [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
     [playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
     [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -377,7 +434,7 @@
                                   AVPlayerStatus status = [statusNumber integerValue];
                                   switch (status) {
                                       case AVPlayerItemStatusReadyToPlay: {
-                                          NSLog(@"LOG: tracking Video Content Started");
+                                          [self showLoading:NO animated:YES];
                                           [[SEGAnalytics sharedAnalytics] track:@"Video Content Started" properties:[self trackingPropertiesForModel]];
                                           self.startedPlaying = YES;
                                           break;
@@ -398,9 +455,16 @@
                                   
                                   NSNumber *newPlaybackBufferEmpty = (NSNumber *)newValue;
                                   BOOL playbackBufferEmpty = [newPlaybackBufferEmpty boolValue];
-                                  NSString *event = playbackBufferEmpty ? @"Video Playback Buffer Started" : @"Video Playback Buffer Completed";
-                                  NSLog(@"LOG: tracking %@", event);
-                                  [[SEGAnalytics sharedAnalytics] track:event properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
+                                  [self handleBufferWithPlaybackLikelyToKeepUp:[[self.player currentItem] isPlaybackLikelyToKeepUp] isPlaybackBufferEmpty:playbackBufferEmpty];
+                              },
+                              @"playbackLikelyToKeepUp": ^(id newValue) {
+                                  if (!isNumberClass(newValue)) {
+                                      return;
+                                  }
+                                  
+                                  NSNumber *newPlaybackLikelyToKeepUp = (NSNumber *)newValue;
+                                  BOOL playbackLikelyToKeepUp = [newPlaybackLikelyToKeepUp boolValue];
+                                  [self handleBufferWithPlaybackLikelyToKeepUp:playbackLikelyToKeepUp isPlaybackBufferEmpty:[[self.player currentItem] isPlaybackBufferEmpty]];
                               }
                               };
 }
@@ -417,7 +481,12 @@
     UIGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGestureRecognizer:)];
     [self.view addGestureRecognizer:gestureRecognizer];
     
-    [self.progressSlider addTarget:self action:@selector(handleSliderChanged:forEvent:) forControlEvents:UIControlEventValueChanged];
+    [self.progressSlider addTarget:self
+                            action:@selector(handleSliderChanged:forEvent:)
+                  forControlEvents:UIControlEventValueChanged];
+    [self.progressSlider addTarget:self
+                            action:@selector(handleSliderEnded:)
+                  forControlEvents:(UIControlEventTouchUpOutside | UIControlEventTouchUpInside)];
 }
 
 -(void)setupUI
@@ -425,11 +494,17 @@
     [self.view setBackgroundColor:[UIColor colorWithWhite:0 alpha:1]];
     [self.playerView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0]];
     
+    [self.activityIndicator setColor:[UIColor colorWithWhite:1 alpha:1]];
+    [self.activityIndicator setTintColor:[UIColor colorWithWhite:1 alpha:1]];
+    
+    [self.titleLabel setText:@""];
     [self.titleLabel setFont:[UIFont systemFontOfSize:22]];
     [self.titleLabel setTextColor:[UIColor colorWithWhite:1 alpha:1]];
     
+    [self.currentProgressLabel setText:@""];
     [self.currentProgressLabel setFont:[UIFont systemFontOfSize:12]];
     [self.currentProgressLabel setTextColor:[UIColor colorWithWhite:1 alpha:1]];
+    [self.remainingProgressLabel setText:@""];
     [self.remainingProgressLabel setFont:[UIFont systemFontOfSize:12]];
     [self.remainingProgressLabel setTextColor:[UIColor colorWithWhite:1 alpha:1]];
     
@@ -453,8 +528,11 @@
         [playerItem removeObserver:self forKeyPath:@"status"];
         [playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
     }
+    if (self.progressSlider) {
+        [self.progressSlider removeTarget:self action:@selector(handleSliderChanged:forEvent:) forControlEvents:UIControlEventValueChanged];
+        [self.progressSlider removeTarget:self action:@selector(handleSliderEnded:) forControlEvents:(UIControlEventTouchUpOutside | UIControlEventTouchUpInside)];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 
 @end

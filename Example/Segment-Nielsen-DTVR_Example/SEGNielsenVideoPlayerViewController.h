@@ -18,11 +18,11 @@
 @property (nonatomic, weak) IBOutlet UISlider *progressSlider;
 @property (nonatomic, weak) IBOutlet UILabel *currentProgressLabel;
 @property (nonatomic, weak) IBOutlet UILabel *remainingProgressLabel;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (nonatomic, strong) SEGVideoModel *model;
 
 -(IBAction)closeButtonTapped:(id)sender;
 -(IBAction)playPauseButtonTapped:(id)sender;
--(IBAction)sliderUpdated:(id)sender;
 
 @end

@@ -126,21 +126,31 @@
                                     <constraint firstItem="MHb-bY-9Oc" firstAttribute="top" secondItem="3up-ph-g5D" secondAttribute="bottom" constant="10" id="y1y-hQ-A6w"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="UCo-5w-ypt">
+                                <rect key="frame" x="182" y="428" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="16S-5M-6Qg"/>
+                                    <constraint firstAttribute="height" constant="50" id="gns-fV-F2G"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Tj1-5v-4QP" firstAttribute="top" secondItem="6KK-mk-xqK" secondAttribute="top" id="3b0-GW-9Vw"/>
                             <constraint firstItem="6KK-mk-xqK" firstAttribute="trailing" secondItem="Tj1-5v-4QP" secondAttribute="trailing" id="87l-Gw-SBw"/>
+                            <constraint firstItem="UCo-5w-ypt" firstAttribute="centerY" secondItem="6KK-mk-xqK" secondAttribute="centerY" id="D9c-iz-FSB"/>
                             <constraint firstItem="AzC-tJ-0n4" firstAttribute="top" secondItem="6KK-mk-xqK" secondAttribute="top" id="Pph-cb-yXa"/>
                             <constraint firstItem="6KK-mk-xqK" firstAttribute="bottom" secondItem="AzC-tJ-0n4" secondAttribute="bottom" id="RZK-Ew-9yI"/>
                             <constraint firstItem="6KK-mk-xqK" firstAttribute="bottom" secondItem="Tj1-5v-4QP" secondAttribute="bottom" id="S1P-EO-hZ7"/>
                             <constraint firstItem="AzC-tJ-0n4" firstAttribute="leading" secondItem="6KK-mk-xqK" secondAttribute="leading" id="X1B-UC-6Sf"/>
                             <constraint firstItem="Tj1-5v-4QP" firstAttribute="leading" secondItem="6KK-mk-xqK" secondAttribute="leading" id="g9D-PZ-BzO"/>
+                            <constraint firstItem="UCo-5w-ypt" firstAttribute="centerX" secondItem="6KK-mk-xqK" secondAttribute="centerX" id="iXk-9R-uUL"/>
                             <constraint firstItem="6KK-mk-xqK" firstAttribute="trailing" secondItem="AzC-tJ-0n4" secondAttribute="trailing" id="ocu-bm-Ka9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6KK-mk-xqK"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="UCo-5w-ypt" id="aJa-ia-MjD"/>
                         <outlet property="closeButton" destination="wYD-7H-hEN" id="Srf-da-iYS"/>
                         <outlet property="controlsOverlay" destination="Tj1-5v-4QP" id="Aj9-Ak-mJK"/>
                         <outlet property="currentProgressLabel" destination="b4r-dD-U8k" id="l5b-yX-YxO"/>
