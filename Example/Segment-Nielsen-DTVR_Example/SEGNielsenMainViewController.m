@@ -32,6 +32,7 @@
     [super viewDidLoad];
     
     [self setupUI];
+    [self.descriptionLabel setText:@"This sample application demonstrates the integration of the Nielsen App SDK and the Segment-Nielsen DTVR Integration, with a custom sample video player to monitor and track various events according to the Segment Video Spec, as it pertains to the DTVR integration. Click the 'Launch Player' button to get started."];
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -66,6 +67,8 @@
     [self.titleLabel setFont:[UIFont systemFontOfSize:22]];
     [self.launchPlayerButton setTitle:@"Launch Player" forState:UIControlStateNormal];
     [[self.launchPlayerButton titleLabel] setFont:[UIFont systemFontOfSize:16]];
+    [self.descriptionLabel setFont:[UIFont systemFontOfSize:16]];
+    [self.descriptionLabel setNumberOfLines:0];
 }
 
 @end

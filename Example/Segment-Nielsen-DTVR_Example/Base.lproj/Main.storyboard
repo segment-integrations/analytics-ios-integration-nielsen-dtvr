@@ -19,7 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBE-ge-HUX">
-                                <rect key="frame" x="0.0" y="44" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="68" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOW-Ri-7v6">
+                                <rect key="frame" x="16" y="113" width="382" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,13 +42,17 @@
                         <constraints>
                             <constraint firstItem="xBE-ge-HUX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Ud-pO-Yqd"/>
                             <constraint firstItem="Iaf-v9-tgJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="7r2-fu-iAK"/>
+                            <constraint firstItem="AOW-Ri-7v6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="8U8-0a-KJ8"/>
                             <constraint firstItem="Iaf-v9-tgJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="A4d-Do-44u"/>
-                            <constraint firstItem="xBE-ge-HUX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ei1-7P-OfU"/>
+                            <constraint firstItem="AOW-Ri-7v6" firstAttribute="top" secondItem="xBE-ge-HUX" secondAttribute="bottom" constant="24" id="Kwj-gj-9O4"/>
+                            <constraint firstItem="xBE-ge-HUX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="ei1-7P-OfU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AOW-Ri-7v6" secondAttribute="trailing" constant="16" id="hI6-MQ-YU0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xBE-ge-HUX" secondAttribute="trailing" id="zpJ-hE-1j2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="AOW-Ri-7v6" id="wBx-gs-Wfz"/>
                         <outlet property="launchPlayerButton" destination="Iaf-v9-tgJ" id="b0Q-er-PqF"/>
                         <outlet property="titleLabel" destination="xBE-ge-HUX" id="gKG-jR-zA4"/>
                     </connections>

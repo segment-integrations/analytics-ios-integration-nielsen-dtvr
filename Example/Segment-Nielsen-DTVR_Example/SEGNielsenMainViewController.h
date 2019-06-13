@@ -10,6 +10,7 @@
 @interface SEGNielsenMainViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, weak) IBOutlet UIButton *launchPlayerButton;
 
 @end
