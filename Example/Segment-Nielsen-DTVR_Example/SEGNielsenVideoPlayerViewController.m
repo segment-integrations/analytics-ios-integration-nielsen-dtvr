@@ -11,6 +11,24 @@
 
 static char TimedMetadataObserverContext = 0;
 
+/*
+ This sample custom video player demonstrates firing several analytics events to Segment which have a mapping with the Nielsen SDK.
+ The following events are tracked:
+ - Video Content Started
+ - Video Content Completed
+ - Video Playback Paused
+ - Video Playback Resumed
+ - Video Playback Completed
+ - Video Playback Seek Started
+ - Video Playback Seek Completed
+ - Video Playback Buffer Started
+ - Video Playback Buffer Completed
+ - Video Playback Interrupted *
+ - Application Backgrounded
+ 
+ *
+ For this event, only the application backgrounding scenario was accounted for. Per Segment requirements, other conditions should trigger this event. See https://segment.com/docs/spec/video/ for more information.
+ */
 @interface SEGNielsenVideoPlayerViewController ()
 
 @property (nonatomic, strong) NSDictionary *playbackHandlers;

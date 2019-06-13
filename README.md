@@ -83,6 +83,10 @@ SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWith
 [SEGAnalytics setupWithConfiguration:config];
 ```
 
+## Sample
+
+See the example application under `Example/` for a demonstration of integration with the Nielsen App SDK and Segment-Nielsen DTVR Integration with a sample custom video player.
+
 ## License
 
 Segment-Nielsen DTVR is available under the MIT license. See the LICENSE file for more info.
