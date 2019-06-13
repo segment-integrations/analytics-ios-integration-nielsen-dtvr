@@ -1,7 +1,9 @@
+source 'https://github.com/NielsenDigitalSDK/nielsenappsdk-ios-specs-dynamic.git'
 use_frameworks!
 
 target 'Segment-Nielsen-DTVR_Example' do
     pod 'Segment-Nielsen-DTVR', :path => '../'
+    pod 'NielsenAppSDK'
 
     target 'Segment-Nielsen-DTVR_Tests' do
         inherit! :search_paths

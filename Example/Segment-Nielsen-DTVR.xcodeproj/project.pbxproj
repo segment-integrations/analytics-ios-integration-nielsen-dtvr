@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C96480DB1A2E4FEFD2DC1D0 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
-		6D2D4D2E22A8480E009530CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3197AD22A645F800DC1AD6 /* WebKit.framework */; };
-		6D2D4D2F22A84814009530CD /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3197B022A6463200DC1AD6 /* AdSupport.framework */; };
-		6D2D4D3022A8481D009530CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3197A922A615F600DC1AD6 /* Foundation.framework */; };
-		6D2D4D3122A8482D009530CD /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D3197B222A6468D00DC1AD6 /* libsqlite3.tbd */; };
 		6D2D4D4B22A84B57009530CD /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4422A84B57009530CD /* .gitkeep */; };
 		6D2D4D4C22A84B57009530CD /* SEGNielsenDTVRIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4622A84B57009530CD /* SEGNielsenDTVRIntegration.m */; };
 		6D2D4D4D22A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4822A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m */; };
@@ -21,7 +17,6 @@
 		6D69132522A1AC0D004D7F1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D69131D22A1AC0D004D7F1A /* main.m */; };
 		6D69132622A1AC0D004D7F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D69131E22A1AC0D004D7F1A /* AppDelegate.m */; };
 		6DA0914D22B0572F00BD47AD /* SEGNielsenMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */; };
-		6DA0914F22B05C4B00BD47AD /* NielsenAppApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA0914E22B05C4B00BD47AD /* NielsenAppApi.framework */; };
 		6DA0915322B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */; };
 		6DBB55AD22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */; };
 		6DF5764422B1AE1B00638A0F /* SEGVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */; };
@@ -51,10 +46,6 @@
 		6D2D4D4822A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenDTVRIntegrationFactory.m; sourceTree = "<group>"; };
 		6D2D4D4A22A84B57009530CD /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		6D3197A822A613D300DC1AD6 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		6D3197A922A615F600DC1AD6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6D3197AD22A645F800DC1AD6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		6D3197B022A6463200DC1AD6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AdSupport.framework; sourceTree = DEVELOPER_DIR; };
-		6D3197B222A6468D00DC1AD6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
 		6D69131622A1AC0D004D7F1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6D69131722A1AC0D004D7F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D69131A22A1AC0D004D7F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -64,7 +55,6 @@
 		6D69131F22A1AC0D004D7F1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenMainViewController.m; sourceTree = "<group>"; };
 		6DA0914C22B0572F00BD47AD /* SEGNielsenMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGNielsenMainViewController.h; sourceTree = "<group>"; };
-		6DA0914E22B05C4B00BD47AD /* NielsenAppApi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NielsenAppApi.framework; sourceTree = "<group>"; };
 		6DA0915122B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGNielsenVideoPlayerViewController.h; sourceTree = "<group>"; };
 		6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenVideoPlayerViewController.m; sourceTree = "<group>"; };
 		6DBB559022A1A303006A4015 /* Segment-Nielsen-DTVR_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-Nielsen-DTVR_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,11 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D2D4D3122A8482D009530CD /* libsqlite3.tbd in Frameworks */,
-				6DA0914F22B05C4B00BD47AD /* NielsenAppApi.framework in Frameworks */,
-				6D2D4D3022A8481D009530CD /* Foundation.framework in Frameworks */,
-				6D2D4D2F22A84814009530CD /* AdSupport.framework in Frameworks */,
-				6D2D4D2E22A8480E009530CD /* WebKit.framework in Frameworks */,
 				8E6DD7221DCCEA25F2A51398 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */,
 				2C96480DB1A2E4FEFD2DC1D0 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */,
 			);
@@ -207,12 +192,7 @@
 		BB8EF7B9DFA97352E52A12B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6DA0914E22B05C4B00BD47AD /* NielsenAppApi.framework */,
 				6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */,
-				6D3197B222A6468D00DC1AD6 /* libsqlite3.tbd */,
-				6D3197B022A6463200DC1AD6 /* AdSupport.framework */,
-				6D3197AD22A645F800DC1AD6 /* WebKit.framework */,
-				6D3197A922A615F600DC1AD6 /* Foundation.framework */,
 				67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */,
 				01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */,
 			);
