@@ -60,15 +60,15 @@ The full instructions from Nielsen can be found [here](https://engineeringportal
 Navigate to the [Nielsen Downloads](https://engineeringportal.nielsen.com/docs/Special:Downloads) page to download the iOS SDK.
 You will need to fill out a license agreement form and have the contact information for your Nielsen representative ready.
 
-Once extracted, add the NielsenAppApi.framework to the project and ensure it's in the `Frameworks` folder, and that it is linked.
+Once extracted, add the static NielsenAppApi.framework to the project and ensure it's in the `Frameworks` folder, and that it is linked.
 
-Nielsen also requires the following frameworks, which must be included into Link Binary with Libraries (within app target’s Build Phases)
+Nielsen also requires the following frameworks, which must be included into Link Binary with Libraries (within app target’s Build Phases) - NOTE - if using the dynamic framework, these will dynamically be linked and there is no need to manually link these.
   - AdSupport.framework
   - SystemConfiguration.framework
   - CoreLocation.framework (Not applicable for International (Germany))
   - libsqlite3
 
-## Integration
+## Usage
 
 Register the factory with the Segment SDK in the `application:didFinishLaunchingWithOptions` method of your `AppDelegate`:
 
