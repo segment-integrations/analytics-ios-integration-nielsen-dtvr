@@ -56,15 +56,10 @@
         NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSString *appId = settings[@"appId"];
         
-        NSString *sfcode;
-        if (settings[@"sfcode"]) {
-            sfcode = @"us";
-        }
-        
         NSDictionary *appInfo = @{
                                   @"appname": appName,
                                   @"appversion": appVersion,
-                                  @"sfcode": sfcode ?: @"",
+                                  @"sfcode": settings[@"sfcode"] ?: @"us",
                                   @"appid": appId ?: @""
                                   };
         
