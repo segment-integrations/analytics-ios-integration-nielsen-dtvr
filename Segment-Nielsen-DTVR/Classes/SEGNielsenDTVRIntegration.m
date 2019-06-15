@@ -16,6 +16,18 @@
 @property (nonatomic, strong) NSArray *events;
 @property (nonatomic, copy) void (^eventHandler)(NielsenAppApi *nielsen, SEGTrackPayload *payload);
 
+/**
+ Constructor method
+ @param events Array of Segment event names for which to fire the block in 'eventHandler'.
+ @param eventHandler Block that is intended to be executed when the appropriate Segment event is fired.
+ 
+ @discussion
+ @b nielsen Instance of the Nielsen App API - this should be passed in from the integration instance, and not retained. The instance's API methods will be invoked.
+ 
+ @b payload Segment tracking payload.
+ 
+ @return Instance of an event handler to map Segment events to Nielsen events.
+*/
 -(instancetype)initWithEvents: (NSArray *)events
                   withHandler:(void (^)(NielsenAppApi *nielsen, SEGTrackPayload *payload))eventHandler;
 
