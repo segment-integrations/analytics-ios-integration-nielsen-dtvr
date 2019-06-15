@@ -189,6 +189,10 @@
     [self.nielsen userOptOut:urlString];
 }
 
+/**
+ @return A function block that is used to submit the ID3 tag through to Nielsen.
+ @warning The string representing the ID3 tag should not be empty or null
+*/
 -(void (^)(NSString *))sendID3Block
 {
     __weak SEGNielsenDTVRIntegration *weakSelf = self;
