@@ -53,6 +53,7 @@
 @interface SEGNielsenDTVRIntegration()
 
 @property (nonatomic, strong) NSMutableArray *eventHandlers;
+@property (nonatomic, strong) NSString *lastSeenID3Tag;
 
 @end
 
@@ -190,8 +191,21 @@
 
 -(void (^)(NSString *))sendID3Block
 {
+    __weak SEGNielsenDTVRIntegration *weakSelf = self;
+    
     return ^void(NSString *id3Tag) {
-        [self.nielsen sendID3:id3Tag];
+        NSString *cleanTag;
+        if (id3Tag == nil || [id3Tag isEqual:[NSNull null]]) {
+            cleanTag = @"";
+        }
+        else {
+            cleanTag = id3Tag;
+        }
+        
+        if (weakSelf.lastSeenID3Tag == nil || ![cleanTag isEqualToString:weakSelf.lastSeenID3Tag]) {
+            weakSelf.lastSeenID3Tag = cleanTag;
+            [weakSelf.nielsen sendID3:cleanTag];
+        }
     };
 }
 
