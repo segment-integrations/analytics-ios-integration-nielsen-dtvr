@@ -16,6 +16,18 @@
 @property (nonatomic, strong) NSArray *events;
 @property (nonatomic, copy) void (^eventHandler)(NielsenAppApi *nielsen, SEGTrackPayload *payload);
 
+/**
+ Constructor method
+ @param events Array of Segment event names for which to fire the block in 'eventHandler'.
+ @param eventHandler Block that is intended to be executed when the appropriate Segment event is fired.
+ 
+ @discussion
+ @b nielsen Instance of the Nielsen App API - this should be passed in from the integration instance, and not retained. The instance's API methods will be invoked.
+ 
+ @b payload Segment tracking payload.
+ 
+ @return Instance of an event handler to map Segment events to Nielsen events.
+*/
 -(instancetype)initWithEvents: (NSArray *)events
                   withHandler:(void (^)(NielsenAppApi *nielsen, SEGTrackPayload *payload))eventHandler;
 
@@ -41,6 +53,7 @@
 @interface SEGNielsenDTVRIntegration()
 
 @property (nonatomic, strong) NSMutableArray *eventHandlers;
+@property (nonatomic, strong) NSString *lastSeenID3Tag;
 
 @end
 
@@ -56,15 +69,10 @@
         NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSString *appId = settings[@"appId"];
         
-        NSString *sfcode;
-        if (settings[@"sfcode"]) {
-            sfcode = @"us";
-        }
-        
         NSDictionary *appInfo = @{
                                   @"appname": appName,
                                   @"appversion": appVersion,
-                                  @"sfcode": sfcode ?: @"",
+                                  @"sfcode": settings[@"sfcode"] ?: @"us",
                                   @"appid": appId ?: @""
                                   };
         
@@ -181,10 +189,27 @@
     [self.nielsen userOptOut:urlString];
 }
 
+/**
+ @return A function block that is used to submit the ID3 tag through to Nielsen.
+ @warning The string representing the ID3 tag should not be empty or null
+*/
 -(void (^)(NSString *))sendID3Block
 {
+    __weak SEGNielsenDTVRIntegration *weakSelf = self;
+    
     return ^void(NSString *id3Tag) {
-        [self.nielsen sendID3:id3Tag];
+        NSString *cleanTag;
+        if (id3Tag == nil || [id3Tag isEqual:[NSNull null]]) {
+            cleanTag = @"";
+        }
+        else {
+            cleanTag = id3Tag;
+        }
+        
+        if (weakSelf.lastSeenID3Tag == nil || ![cleanTag isEqualToString:weakSelf.lastSeenID3Tag]) {
+            weakSelf.lastSeenID3Tag = cleanTag;
+            [weakSelf.nielsen sendID3:cleanTag];
+        }
     };
 }
 
