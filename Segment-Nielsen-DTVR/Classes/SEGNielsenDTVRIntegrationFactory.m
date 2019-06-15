@@ -18,6 +18,8 @@
 
 @implementation SEGNielsenDTVRIntegrationFactory
 
+static int MAX_NUMBER_NIELSEN_SDKS_PER_APPID = 4;
+
 +(instancetype)instance
 {
     static dispatch_once_t once;
@@ -54,7 +56,7 @@
     }
     
     [integrationArray addObject:integration];
-    if ([integrationArray count] > 4) {
+    if ([integrationArray count] > MAX_NUMBER_NIELSEN_SDKS_PER_APPID) {
         [integrationArray removeObjectAtIndex:0];
     }
     return integration;
