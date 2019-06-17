@@ -12,6 +12,11 @@
 
 + (instancetype)instance;
 
+/**
+ Returns the array of SEGNielsenDTVRIntegration instances given an app ID
+ @param appId App ID
+ @return NSArray of SEGNielsenDTVRIntegration instances for the app ID
+ */
 - (NSArray *) integrationsForAppId:(NSString *)appId;
 
 @end
