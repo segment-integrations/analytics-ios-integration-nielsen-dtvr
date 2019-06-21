@@ -146,7 +146,7 @@
                                           }];
     
     // This is marked as required in the destination settings
-    NSArray<NSString *> *sendID3EventNames = self.settings[@"sendId3Events"];
+    NSArray<NSString *> *sendID3EventNames = self.settings[@"sendId3Events"] ?: @[];
     SEGNielsenEventHandler *sendID3Handler = [[SEGNielsenEventHandler alloc]
                                               initWithEvents:sendID3EventNames
                                               withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
