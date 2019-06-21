@@ -138,6 +138,7 @@ static char TimedMetadataObserverContext = 0;
 
 -(void)closePlayer
 {
+    [self.player pause];
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"LOG: tracking Video Playback Completed");
         [[SEGAnalytics sharedAnalytics] track:@"Video Playback Completed" properties:[self trackingPropertiesForModelWithCurrentPlayProgress]];
@@ -492,7 +493,7 @@ static char TimedMetadataObserverContext = 0;
                                   [self handleBufferWithPlaybackLikelyToKeepUp:playbackLikelyToKeepUp isPlaybackBufferEmpty:[[self.player currentItem] isPlaybackBufferEmpty]];
                               },
                               @"timedMetadata": ^(id newValue, void *context) {
-                                  if (context != &TimedMetadataObserverContext || newValue != [NSNull null]) {
+                                  if (context != &TimedMetadataObserverContext || newValue == [NSNull null]) {
                                       return;
                                   }
                                   
