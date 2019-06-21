@@ -443,7 +443,7 @@ describe(@"SEGNielsenDTVRIntegrationFactory", ^{
         expect([[factory integrationsForAppId:@"test"] count]).to.equal(4);
     });
     
-    it(@"removes an old integration instance when the limit of integrations is exceeded", ^{
+    it(@"returns an old instance when the limit of integrations is exceeded", ^{
         SEGNielsenDTVRIntegrationFactory *factory = [[SEGNielsenDTVRIntegrationFactory alloc] init];
         SEGAnalytics *mockAnalytics = mock([SEGAnalytics class]);
         
@@ -453,6 +453,7 @@ describe(@"SEGNielsenDTVRIntegrationFactory", ^{
         
         SEGNielsenDTVRIntegration *integration = [factory createWithSettings:settings forAnalytics:mockAnalytics];
         expect([[factory integrationsForAppId:@"test"] containsObject:integration]).to.beTruthy();
+        expect([[factory integrationsForAppId:@"test"] count]).to.equal(4);
     });
 });
 
