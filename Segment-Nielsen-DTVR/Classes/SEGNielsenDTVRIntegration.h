@@ -17,6 +17,5 @@
 - (instancetype)initWithSettings:(NSDictionary *)settings andNielsen:(NielsenAppApi *)neilsen;
 - (NSString *)optOutURL;
 - (void)userOptOutStatus:(NSString *)urlString;
-- (void (^)(NSString *))sendID3Block;
 
 @end
