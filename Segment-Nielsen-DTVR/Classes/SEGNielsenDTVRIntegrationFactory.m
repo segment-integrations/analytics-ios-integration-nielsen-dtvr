@@ -46,7 +46,6 @@ static int MAX_NUMBER_NIELSEN_SDKS_PER_APPID = 4;
 
 -(id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
-    SEGNielsenDTVRIntegration *integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:settings andNielsen:nil];
     NSString *appId = settings[@"appId"] ?: @"";
     
     NSMutableArray *integrationArray = self.integrationsByAppId[appId];
@@ -55,9 +54,13 @@ static int MAX_NUMBER_NIELSEN_SDKS_PER_APPID = 4;
         self.integrationsByAppId[appId] = integrationArray;
     }
     
-    [integrationArray addObject:integration];
-    if ([integrationArray count] > MAX_NUMBER_NIELSEN_SDKS_PER_APPID) {
-        [integrationArray removeObjectAtIndex:0];
+    SEGNielsenDTVRIntegration *integration;
+    if ([integrationArray count] >= MAX_NUMBER_NIELSEN_SDKS_PER_APPID) {
+        integration = [integrationArray objectAtIndex:0];
+    }
+    else {
+        integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:settings andNielsen:nil];
+        [integrationArray addObject:integration];
     }
     return integration;
 }
