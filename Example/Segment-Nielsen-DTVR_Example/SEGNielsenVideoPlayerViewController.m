@@ -512,7 +512,8 @@ static char TimedMetadataObserverContext = 0;
                                       NSString *key = [NSString stringWithFormat:@"%@", [metadataItem key]];
                                       
                                       if ([key isEqualToString:@"PRIV"] && [extraString rangeOfString:@"www.nielsen.com"].length > 0) {
-                                          // TODO Add sendID3 here
+                                          // Event name set in destination settings
+                                          [[SEGAnalytics sharedAnalytics] track:@"ID3 Tag" properties:[self trackingPropertiesForModel]];
                                       }
                                   }
                               },
