@@ -26,7 +26,14 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         
         [given([mockNielsenAppApi initWithAppInfo:appInfo delegate:nil]) willReturn:mockNielsenAppApi];
         
-        integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:@{@"appid": @"test"} andNielsen:mockNielsenAppApi];
+        integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:@{
+                                                                            @"appid": @"test",
+                                                                            @"sendId3Events":@[
+                                                                                    @"event 1",
+                                                                                    @"event 2"
+                                                                                    ],
+                                                                            @"id3Property": @"id3TagKey",
+                                                                            } andNielsen:mockNielsenAppApi];
     });
     
     describe(@"Video Content Started", ^{
@@ -267,11 +274,6 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         [verify(mockNielsenAppApi) userOptOut:@"nielsenappsdk://0"];
     });
     
-    it(@"ID3 block tracks sendID3", ^{
-        [integration sendID3Block](@"testID3tag");
-        [verify(mockNielsenAppApi) sendID3:@"testID3tag"];
-    });
-    
     it(@"does not track a bogus event", ^{
         SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"testevent"
                                                                properties:@{
@@ -289,6 +291,123 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         [(NielsenAppApi *)verifyCount(mockNielsenAppApi, never()) end];
         [(NielsenAppApi *)verifyCount(mockNielsenAppApi, never()) play:@{}];
         [verifyCount(mockNielsenAppApi, never()) loadMetadata:@{}];
+    });
+    
+    describe(@"ID3 Tracking", ^{
+        it(@"tracks sendID3 when 'event 1' is tracked', and uses proper key from settings", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"id3TagKey": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verify(mockNielsenAppApi) sendID3:@"testid3"];
+        });
+        
+        it(@"tracks sendID3 when 'event 2' is tracked', and uses proper key from settings", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 2"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"id3TagKey": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verify(mockNielsenAppApi) sendID3:@"testid3"];
+        });
+        
+        it(@"does not track sendID3 when a random event is called", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"random non-specified id3 event"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"id3TagKey": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verifyCount(mockNielsenAppApi, never()) sendID3:@"testid3"];
+        });
+        
+        it(@"tracks sendID3 and uses default key of ID3 for payload properties", ^{
+            integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:@{
+                                                                                @"appid": @"test",
+                                                                                @"sendId3Events":@[
+                                                                                        @"event 1",
+                                                                                        ],
+                                                                                } andNielsen:mockNielsenAppApi];
+            
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"Id3": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verify(mockNielsenAppApi) sendID3:@"testid3"];
+        });
+        
+        it(@"does not track sendID3 when id3Property key is not defined, but default ID3 key is not transmitted", ^{
+            integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:@{
+                                                                                @"appid": @"test",
+                                                                                @"sendId3Events":@[
+                                                                                        @"event 1",
+                                                                                        ],
+                                                                                } andNielsen:mockNielsenAppApi];
+            
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"non-supported-id3-key": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verifyCount(mockNielsenAppApi, never()) sendID3:@"testid3"];
+        });
+        
+        it(@"does not track sendID3 when sendId3Events is empty", ^{
+            integration = [[SEGNielsenDTVRIntegration alloc] initWithSettings:@{
+                                                                                @"appid": @"test",
+                                                                                @"sendId3Events":@[],
+                                                                                } andNielsen:mockNielsenAppApi];
+            
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"Id3": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [verifyCount(mockNielsenAppApi, never()) sendID3:@"testid3"];
+        });
     });
 });
 

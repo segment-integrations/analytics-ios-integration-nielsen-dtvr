@@ -52,7 +52,7 @@
 
 @interface SEGNielsenDTVRIntegration()
 
-@property (nonatomic, strong) NSMutableArray *eventHandlers;
+@property (nonatomic, strong) NSArray *eventHandlers;
 @property (nonatomic, strong) NSString *lastSeenID3Tag;
 
 @end
@@ -88,15 +88,12 @@
 
 -(void)setupEventHandlers
 {
-    self.eventHandlers = [[NSMutableArray alloc] init];
     SEGNielsenEventHandler *startHandler = [[SEGNielsenEventHandler alloc]
                                            initWithEvents:@[
                                                             @"Video Content Started"
                                                             ]
                                            withHandler:^void (NielsenAppApi *nielsen, SEGTrackPayload *payload) {
                                                NSDictionary *properties = payload.properties;
-                                               
-                                               NSDictionary *channelInfo = [self channelInfoForPayload:payload];
                                                
                                                NSString *loadType = properties[@"load_type"];
                                                NSString *adModel;
@@ -112,13 +109,9 @@
                                                                           @"type": @"content",
                                                                           @"adModel": adModel ?: @""
                                                                           };
-                                               // TODO: Retrieve ID3 Tag from stream, needs to be with timed metadata event
-                                               NSString *id3Tag;
                                                
-                                               [nielsen play:channelInfo];
+                                               [nielsen play:[self channelInfoForPayload:payload]];
                                                [nielsen loadMetadata:metadata];
-                                               // TODO: Will need to provide this separately to coordinate with timed metadata events
-                                               [nielsen sendID3:id3Tag];
     }];
     
     SEGNielsenEventHandler *playHandler = [[SEGNielsenEventHandler alloc]
@@ -128,14 +121,7 @@
                                                             @"Video Playback Resumed"
                                                             ]
                                            withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
-                                               NSDictionary *channelInfo = [self channelInfoForPayload:payload];
-                                               
-                                               // TODO: Retrieve ID3 Tag from stream, needs to be with timed metadata event
-                                               NSString *id3Tag;
-                                               
-                                               [nielsen play:channelInfo];
-                                               // TODO: Will need to provide this separately to coordinate with timed metadata events
-                                               [nielsen sendID3:id3Tag];
+                                               [nielsen play:[self channelInfoForPayload:payload]];
                                            }];
     
     SEGNielsenEventHandler *stopHandler = [[SEGNielsenEventHandler alloc]
@@ -159,10 +145,24 @@
                                               [nielsen end];
                                           }];
     
-    [self.eventHandlers addObject:startHandler];
-    [self.eventHandlers addObject:playHandler];
-    [self.eventHandlers addObject:stopHandler];
-    [self.eventHandlers addObject:endHandler];
+    // This is marked as required in the destination settings
+    NSArray<NSString *> *sendID3EventNames = self.settings[@"sendId3Events"];
+    SEGNielsenEventHandler *sendID3Handler = [[SEGNielsenEventHandler alloc]
+                                              initWithEvents:sendID3EventNames
+                                              withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
+                                                  NSString *id3TagPropertyKey = self.settings[@"id3Property"] ?: @"Id3";
+                                                  
+                                                  NSString *id3Tag = payload.properties[id3TagPropertyKey];
+                                                  [self.nielsen sendID3:id3Tag];
+                                              }];
+    
+    self.eventHandlers = @[
+                           startHandler,
+                           playHandler,
+                           stopHandler,
+                           endHandler,
+                           sendID3Handler
+                           ];
 }
 
 #pragma mark Tracking
@@ -194,30 +194,6 @@
 -(void)userOptOutStatus:(NSString *)urlString
 {
     [self.nielsen userOptOut:urlString];
-}
-
-/**
- @return A function block that is used to submit the ID3 tag through to Nielsen.
- @warning The string representing the ID3 tag should not be empty or null
- */
--(void (^)(NSString *))sendID3Block
-{
-    __weak SEGNielsenDTVRIntegration *weakSelf = self;
-    
-    return ^void(NSString *id3Tag) {
-        NSString *cleanTag;
-        if (id3Tag == nil || [id3Tag isEqual:[NSNull null]]) {
-            cleanTag = @"";
-        }
-        else {
-            cleanTag = id3Tag;
-        }
-        
-        if (weakSelf.lastSeenID3Tag == nil || ![cleanTag isEqualToString:weakSelf.lastSeenID3Tag]) {
-            weakSelf.lastSeenID3Tag = cleanTag;
-            [weakSelf.nielsen sendID3:cleanTag];
-        }
-    };
 }
 
 #pragma mark Helpers
