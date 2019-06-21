@@ -408,6 +408,53 @@ describe(@"SEGNielsenDTVRIntegration", ^{
             [integration track:payload];
             [verifyCount(mockNielsenAppApi, never()) sendID3:@"testid3"];
         });
+        
+        it(@"does not track sendID3 when the same value is sent more than once in succession", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"id3TagKey": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [integration track:payload];
+            [verifyCount(mockNielsenAppApi, times(1)) sendID3:@"testid3"];
+        });
+        
+        it(@"resumes tracking sendID3 when a new tag is encountered", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"adModel": @"linear",
+                                                                                @"id3TagKey": @"testid3",
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            
+            [integration track:payload];
+            [integration track:payload];
+            
+            SEGTrackPayload *newPayload = [[SEGTrackPayload alloc] initWithEvent:@"event 1"
+                                                                      properties:@{
+                                                                                   @"asset_id" : @"1234",
+                                                                                   @"channel": @"defaultChannelName",
+                                                                                   @"adModel": @"linear",
+                                                                                   @"id3TagKey": @"testid3new",
+                                                                                   }
+                                                                         context:@{}
+                                                                    integrations:@{}
+                                           ];
+            [integration track:newPayload];
+            [verifyCount(mockNielsenAppApi, times(1)) sendID3:@"testid3"];
+            [verifyCount(mockNielsenAppApi, times(1)) sendID3:@"testid3new"];
+        });
     });
 });
 
