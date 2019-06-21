@@ -274,11 +274,6 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         [verify(mockNielsenAppApi) userOptOut:@"nielsenappsdk://0"];
     });
     
-    it(@"ID3 block tracks sendID3", ^{
-        [integration sendID3Block](@"testID3tag");
-        [verify(mockNielsenAppApi) sendID3:@"testID3tag"];
-    });
-    
     it(@"does not track a bogus event", ^{
         SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"testevent"
                                                                properties:@{
