@@ -88,6 +88,7 @@
 
 -(void)setupEventHandlers
 {
+    __weak SEGNielsenDTVRIntegration *weakSelf = self;
     SEGNielsenEventHandler *startHandler = [[SEGNielsenEventHandler alloc]
                                            initWithEvents:@[
                                                             @"Video Content Started"
@@ -110,7 +111,7 @@
                                                                           @"adModel": adModel ?: @""
                                                                           };
                                                
-                                               [nielsen play:[self channelInfoForPayload:payload]];
+                                               [nielsen play:[weakSelf channelInfoForPayload:payload]];
                                                [nielsen loadMetadata:metadata];
     }];
     
@@ -121,7 +122,7 @@
                                                             @"Video Playback Resumed"
                                                             ]
                                            withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
-                                               [nielsen play:[self channelInfoForPayload:payload]];
+                                               [nielsen play:[weakSelf channelInfoForPayload:payload]];
                                            }];
     
     SEGNielsenEventHandler *stopHandler = [[SEGNielsenEventHandler alloc]
@@ -150,10 +151,13 @@
     SEGNielsenEventHandler *sendID3Handler = [[SEGNielsenEventHandler alloc]
                                               initWithEvents:sendID3EventNames
                                               withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
-                                                  NSString *id3TagPropertyKey = self.settings[@"id3Property"] ?: @"Id3";
+                                                  NSString *id3TagPropertyKey = weakSelf.settings[@"id3Property"] ?: @"Id3";
                                                   
-                                                  NSString *id3Tag = payload.properties[id3TagPropertyKey];
-                                                  [self.nielsen sendID3:id3Tag];
+                                                  NSString *id3Tag = payload.properties[id3TagPropertyKey] ?: @"";
+                                                  if (weakSelf.lastSeenID3Tag == nil || ![id3Tag isEqualToString:weakSelf.lastSeenID3Tag]) {
+                                                      weakSelf.lastSeenID3Tag = id3Tag;
+                                                      [weakSelf.nielsen sendID3:id3Tag];
+                                                  }
                                               }];
     
     self.eventHandlers = @[
