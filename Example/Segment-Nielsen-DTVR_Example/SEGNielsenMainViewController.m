@@ -7,11 +7,17 @@
 
 #import <AVKit/AVPlayerViewController.h>
 #import <Analytics/SEGAnalytics.h>
+#import <Analytics/SEGIntegrationsManager.h>
+#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>
+#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegration.h>
 #import "SEGVideoModel.h"
 #import "SEGNielsenMainViewController.h"
 #import "SEGNielsenVideoPlayerViewController.h"
+#import "SEGNielsenWebViewController.h"
 
 @interface SEGNielsenMainViewController ()
+
+@property (nonatomic, copy) NSString *optOutURL;
 
 @end
 
@@ -19,16 +25,18 @@
 
 #pragma mark - Lifecycle
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupUI];
     [self.descriptionLabel setText:@"This sample application demonstrates the integration of the Nielsen App SDK and the Segment-Nielsen DTVR Integration, with a custom sample video player to monitor and track various events according to the Segment Video Spec, as it pertains to the DTVR integration. Click the 'Launch Player' button to get started."];
-}
-
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleIntegrationDidStart:) name:SEGAnalyticsIntegrationDidStart object:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -43,6 +51,10 @@
                                                                    loadType:@"linear"
                                                                 channelName:@"defaultChannelName"
                                                                    duration:596];
+    }
+    else if ([viewController isKindOfClass:[SEGNielsenWebViewController class]]) {
+        SEGNielsenWebViewController *webController = (SEGNielsenWebViewController *)viewController;
+        webController.urlString = self.optOutURL;
     }
     else {
         [super prepareForSegue:segue sender:sender];
@@ -60,6 +72,26 @@
     [[self.launchPlayerButton titleLabel] setFont:[UIFont systemFontOfSize:16]];
     [self.descriptionLabel setFont:[UIFont systemFontOfSize:16]];
     [self.descriptionLabel setNumberOfLines:0];
+}
+
+-(void)handleIntegrationDidStart:(NSNotification *)notification
+{
+    NSString *integrationKey = notification.object;
+    
+    if ([integrationKey isEqualToString:@"Nielsen DTVR"]) {
+        NSArray *integrations = [[SEGNielsenDTVRIntegrationFactory instance] integrationsForAppId:@"NIELSEN_APP_ID_HERE"];
+        SEGNielsenDTVRIntegration *integration = [integrations objectAtIndex:0];
+        self.optOutURL = [integration optOutURL];
+        [self showOptOut];
+    }
+}
+
+-(void)showOptOut
+{
+    __weak SEGNielsenMainViewController *weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf performSegueWithIdentifier:@"WebViewSegue" sender:nil];
+    });
 }
 
 @end

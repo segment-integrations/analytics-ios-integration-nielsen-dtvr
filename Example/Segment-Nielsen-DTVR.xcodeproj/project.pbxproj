@@ -18,10 +18,10 @@
 		6D69132622A1AC0D004D7F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D69131E22A1AC0D004D7F1A /* AppDelegate.m */; };
 		6DA0914D22B0572F00BD47AD /* SEGNielsenMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */; };
 		6DA0915322B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */; };
+		6DAE1BFF22C18DF700F1BAC0 /* SEGNielsenWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */; };
 		6DBB55AD22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */; };
 		6DF5764422B1AE1B00638A0F /* SEGVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */; };
 		8E6DD7221DCCEA25F2A51398 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
-		9AEAC3183CAE1EDE5DF09BE9 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
 		CACD3667E641A332538C9B0E /* Pods_Segment_Nielsen_DTVR_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +58,8 @@
 		6DA0914C22B0572F00BD47AD /* SEGNielsenMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGNielsenMainViewController.h; sourceTree = "<group>"; };
 		6DA0915122B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGNielsenVideoPlayerViewController.h; sourceTree = "<group>"; };
 		6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenVideoPlayerViewController.m; sourceTree = "<group>"; };
+		6DAE1BFD22C18DF700F1BAC0 /* SEGNielsenWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGNielsenWebViewController.h; sourceTree = "<group>"; };
+		6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenWebViewController.m; sourceTree = "<group>"; };
 		6DBB559022A1A303006A4015 /* Segment-Nielsen-DTVR_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-Nielsen-DTVR_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DBB55A822A1A305006A4015 /* Segment-Nielsen-DTVR_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Segment-Nielsen-DTVR_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Segment_Nielsen_DTVR_ExampleTests.m; sourceTree = "<group>"; };
@@ -145,6 +147,8 @@
 				6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */,
 				6DF5764222B1AE1B00638A0F /* SEGVideoModel.h */,
 				6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */,
+				6DAE1BFD22C18DF700F1BAC0 /* SEGNielsenWebViewController.h */,
+				6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */,
 			);
 			path = "Segment-Nielsen-DTVR_Example";
 			sourceTree = "<group>";
@@ -387,6 +391,7 @@
 			files = (
 				6DA0915322B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m in Sources */,
 				6D69132522A1AC0D004D7F1A /* main.m in Sources */,
+				6DAE1BFF22C18DF700F1BAC0 /* SEGNielsenWebViewController.m in Sources */,
 				6DA0914D22B0572F00BD47AD /* SEGNielsenMainViewController.m in Sources */,
 				6D69132622A1AC0D004D7F1A /* AppDelegate.m in Sources */,
 				6D2D4D4D22A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m in Sources */,
