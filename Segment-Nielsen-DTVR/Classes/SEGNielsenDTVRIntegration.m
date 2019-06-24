@@ -151,7 +151,7 @@
     SEGNielsenEventHandler *sendID3Handler = [[SEGNielsenEventHandler alloc]
                                               initWithEvents:sendID3EventNames
                                               withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
-                                                  NSString *id3TagPropertyKey = weakSelf.settings[@"id3Property"] ?: @"Id3";
+                                                  NSString *id3TagPropertyKey = weakSelf.settings[@"id3Property"] ?: @"id3";
                                                   
                                                   NSString *id3Tag = payload.properties[id3TagPropertyKey] ?: @"";
                                                   if (weakSelf.lastSeenID3Tag == nil || ![id3Tag isEqualToString:weakSelf.lastSeenID3Tag]) {
@@ -173,10 +173,9 @@
 
 -(void)track:(SEGTrackPayload *)payload
 {
-    NSString *event = payload.event;
-    
     for (SEGNielsenEventHandler *handler in self.eventHandlers) {
-        if ([handler.events containsObject:event]) {
+        if ([self arrayContainsStringIgnoreCase:payload.event
+                                       forArray:handler.events]) {
             handler.eventHandler(self.nielsen, payload);
             break;
         }
@@ -216,6 +215,27 @@
                                   @"mediaURL": @"",
                                   };
     return channelInfo;
+}
+
+/**
+ Checks a given array of strings to determine whether 'compare' is found, ignoring case
+ @param compare NSString to compare. If not provided, 'NO' is returned
+ @param array NSArray of strings to check against
+ @return BOOL 'YES' if 'compare' is found within the array of strings, otherwise 'NO'
+ */
+-(BOOL)arrayContainsStringIgnoreCase:(NSString *)compare forArray:(NSArray<NSString *> *)array
+{
+    if (compare == nil || [compare isEqual:[NSNull null]]) {
+        return NO;
+    }
+    
+    for (NSString *string in array) {
+        if ([[string lowercaseString] isEqualToString:[compare lowercaseString]]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 @end

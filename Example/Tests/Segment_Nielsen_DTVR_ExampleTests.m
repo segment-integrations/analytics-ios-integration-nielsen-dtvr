@@ -355,7 +355,7 @@ describe(@"SEGNielsenDTVRIntegration", ^{
                                                                                 @"asset_id" : @"1234",
                                                                                 @"channel": @"defaultChannelName",
                                                                                 @"adModel": @"linear",
-                                                                                @"Id3": @"testid3",
+                                                                                @"id3": @"testid3",
                                                                                 }
                                                                       context:@{}
                                                                  integrations:@{}
@@ -399,7 +399,7 @@ describe(@"SEGNielsenDTVRIntegration", ^{
                                                                                 @"asset_id" : @"1234",
                                                                                 @"channel": @"defaultChannelName",
                                                                                 @"adModel": @"linear",
-                                                                                @"Id3": @"testid3",
+                                                                                @"id3": @"testid3",
                                                                                 }
                                                                       context:@{}
                                                                  integrations:@{}
