@@ -32,6 +32,7 @@
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
+    // Example of how to retrieve opt-out status via legacy opt-out method
     NSURLRequest *request = [navigationAction request];
     NSString *url = [[request URL]absoluteString];
     

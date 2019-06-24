@@ -88,6 +88,7 @@
 
 -(void)showOptOut
 {
+    // Nielsen's legacy method of having user opt out/in on iOS SDK less than 5.1.1.18
     __weak SEGNielsenMainViewController *weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [weakSelf performSegueWithIdentifier:@"WebViewSegue" sender:nil];
