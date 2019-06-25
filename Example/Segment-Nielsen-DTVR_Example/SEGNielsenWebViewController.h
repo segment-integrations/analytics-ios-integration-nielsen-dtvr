@@ -11,7 +11,6 @@
 @interface SEGNielsenWebViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UIButton *closeButton;
-@property (nonatomic, weak) IBOutlet WKWebView *webView;
 
 @property (nonatomic, weak) NSString *urlString;
 

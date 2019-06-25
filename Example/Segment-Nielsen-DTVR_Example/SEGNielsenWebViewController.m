@@ -12,6 +12,8 @@
 
 @interface SEGNielsenWebViewController () <WKNavigationDelegate>
 
+@property (nonatomic, strong) WKWebView *webView;
+
 @end
 
 @implementation SEGNielsenWebViewController
@@ -52,6 +54,23 @@
     [self.closeButton setImage:[UIImage imageNamed:@"btn_close"] forState:UIControlStateNormal];
     [self.closeButton setTitle:@"" forState:UIControlStateNormal];
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    [self.webView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:self.webView];
+    
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[button]-[webview]-|"
+                                                                                     options:0
+                                                                                     metrics:nil
+                                                                                       views:@{@"button": self.closeButton, @"webview": self.webView}];
+    
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[webview]-|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:@{@"webview": self.webView}];
+    
+    [self.view addConstraints:verticalConstraints];
+    [self.view addConstraints:horizontalConstraints];
 }
 
 @end

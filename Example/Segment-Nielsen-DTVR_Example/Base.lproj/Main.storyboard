@@ -195,29 +195,16 @@
                                     <action selector="handleCloseButtonTapped:" destination="Kr1-T3-GNw" eventType="touchUpInside" id="Gjx-is-cH7"/>
                                 </connections>
                             </button>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vv-Nu-Esm">
-                                <rect key="frame" x="0.0" y="97" width="414" height="765"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1hM-3E-X2f" firstAttribute="trailing" secondItem="0Vv-Nu-Esm" secondAttribute="trailing" id="33m-wT-uc9"/>
-                            <constraint firstItem="1hM-3E-X2f" firstAttribute="bottom" secondItem="0Vv-Nu-Esm" secondAttribute="bottom" id="BkK-3d-X0j"/>
                             <constraint firstItem="ZK3-0g-aCX" firstAttribute="leading" secondItem="1hM-3E-X2f" secondAttribute="leading" constant="8" id="G5f-bx-b1e"/>
-                            <constraint firstItem="0Vv-Nu-Esm" firstAttribute="top" secondItem="ZK3-0g-aCX" secondAttribute="bottom" id="KGz-L7-Jck"/>
                             <constraint firstItem="ZK3-0g-aCX" firstAttribute="top" secondItem="1hM-3E-X2f" secondAttribute="top" constant="8" id="KRL-dH-GkY"/>
-                            <constraint firstItem="0Vv-Nu-Esm" firstAttribute="leading" secondItem="1hM-3E-X2f" secondAttribute="leading" id="Yk7-IJ-Peq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1hM-3E-X2f"/>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="ZK3-0g-aCX" id="EAl-Tx-IKK"/>
-                        <outlet property="webView" destination="0Vv-Nu-Esm" id="tpe-Pu-W8P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6r-89-6C1" userLabel="First Responder" sceneMemberID="firstResponder"/>
