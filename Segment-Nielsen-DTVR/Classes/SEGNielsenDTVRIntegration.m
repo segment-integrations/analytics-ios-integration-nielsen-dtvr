@@ -69,12 +69,16 @@
         NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
         NSString *appId = settings[@"appId"];
         
-        NSDictionary *appInfo = @{
-                                  @"appname": appName,
-                                  @"appversion": appVersion,
-                                  @"sfcode": settings[@"sfcode"] ?: @"us",
-                                  @"appid": appId ?: @""
-                                  };
+        NSMutableDictionary *appInfo = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                         @"appname": appName,
+                                                                                         @"appversion": appVersion,
+                                                                                         @"sfcode": settings[@"sfcode"] ?: @"us",
+                                                                                         @"appid": appId ?: @""
+                                                                                         }];
+        
+        if (settings[@"Debug"]) {
+            [appInfo addEntriesFromDictionary:@{@"nol_devDebug": @"DEBUG"}];
+        }
         
         [self setupEventHandlers];
         
