@@ -76,7 +76,7 @@
                                                                                          @"appid": appId ?: @""
                                                                                          }];
         
-        if (settings[@"debug"]) {
+        if ([settings[@"debug"] boolValue]) {
             [appInfo addEntriesFromDictionary:@{@"nol_devDebug": @"DEBUG"}];
         }
         
