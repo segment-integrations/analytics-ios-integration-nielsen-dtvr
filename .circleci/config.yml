@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Add Nielsen credentials
           command: |
-            cat << EOF > .netrc
+            cat >~/.netrc <<EOF
               machine $NIELSEN_MACHINE
               login $NIELSEN_SDK_LOGIN
               password $NIELSEN_SDK_PASSWORD
