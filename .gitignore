@@ -19,5 +19,9 @@ DerivedData
 *.hmap
 *.ipa
 
+# Bundler
+.bundle
+
 Pods/
-Example/NielsenAppApi.framework
+Example/NielsenAppApi.framework/
+

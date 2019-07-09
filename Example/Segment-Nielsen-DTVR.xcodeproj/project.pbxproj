@@ -1,0 +1,797 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C96480DB1A2E4FEFD2DC1D0 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
+		6D2D4D4B22A84B57009530CD /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4422A84B57009530CD /* .gitkeep */; };
+		6D2D4D4C22A84B57009530CD /* SEGNielsenDTVRIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4622A84B57009530CD /* SEGNielsenDTVRIntegration.m */; };
+		6D2D4D4D22A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2D4D4822A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m */; };
+		6D69132122A1AC0D004D7F1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D69131722A1AC0D004D7F1A /* Assets.xcassets */; };
+		6D69132322A1AC0D004D7F1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D69131922A1AC0D004D7F1A /* LaunchScreen.storyboard */; };
+		6D69132422A1AC0D004D7F1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D69131B22A1AC0D004D7F1A /* Main.storyboard */; };
+		6D69132522A1AC0D004D7F1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D69131D22A1AC0D004D7F1A /* main.m */; };
+		6D69132622A1AC0D004D7F1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D69131E22A1AC0D004D7F1A /* AppDelegate.m */; };
+		6DA0914D22B0572F00BD47AD /* SEGNielsenMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */; };
+		6DA0915322B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */; };
+		6DAE1BFF22C18DF700F1BAC0 /* SEGNielsenWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */; };
+		6DBB55AD22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */; };
+		6DF5764422B1AE1B00638A0F /* SEGVideoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */; };
+		8E6DD7221DCCEA25F2A51398 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */; };
+		CACD3667E641A332538C9B0E /* Pods_Segment_Nielsen_DTVR_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DBB55A922A1A305006A4015 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6DFD0F3922A1A1C4008E6373 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6DBB558F22A1A303006A4015;
+			remoteInfo = "Segment-Nielsen-DTVR_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_Nielsen_DTVR_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F0344AAC2D1FF65493E37A3 /* Pods-Segment-Nielsen-DTVR_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Nielsen-DTVR_Example.release.xcconfig"; path = "Target Support Files/Pods-Segment-Nielsen-DTVR_Example/Pods-Segment-Nielsen-DTVR_Example.release.xcconfig"; sourceTree = "<group>"; };
+		67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_Nielsen_DTVR_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Segment_Nielsen_DTVR_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D2D4D4422A84B57009530CD /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		6D2D4D4522A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGNielsenDTVRIntegrationFactory.h; sourceTree = "<group>"; };
+		6D2D4D4622A84B57009530CD /* SEGNielsenDTVRIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenDTVRIntegration.m; sourceTree = "<group>"; };
+		6D2D4D4722A84B57009530CD /* SEGNielsenDTVRIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGNielsenDTVRIntegration.h; sourceTree = "<group>"; };
+		6D2D4D4822A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenDTVRIntegrationFactory.m; sourceTree = "<group>"; };
+		6D2D4D4A22A84B57009530CD /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		6D3197A822A613D300DC1AD6 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		6D69131622A1AC0D004D7F1A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6D69131722A1AC0D004D7F1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6D69131A22A1AC0D004D7F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6D69131C22A1AC0D004D7F1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6D69131D22A1AC0D004D7F1A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6D69131E22A1AC0D004D7F1A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6D69131F22A1AC0D004D7F1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenMainViewController.m; sourceTree = "<group>"; };
+		6DA0914C22B0572F00BD47AD /* SEGNielsenMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGNielsenMainViewController.h; sourceTree = "<group>"; };
+		6DA0915122B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGNielsenVideoPlayerViewController.h; sourceTree = "<group>"; };
+		6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenVideoPlayerViewController.m; sourceTree = "<group>"; };
+		6DAE1BFD22C18DF700F1BAC0 /* SEGNielsenWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGNielsenWebViewController.h; sourceTree = "<group>"; };
+		6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGNielsenWebViewController.m; sourceTree = "<group>"; };
+		6DBB559022A1A303006A4015 /* Segment-Nielsen-DTVR_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-Nielsen-DTVR_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DBB55A822A1A305006A4015 /* Segment-Nielsen-DTVR_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Segment-Nielsen-DTVR_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Segment_Nielsen_DTVR_ExampleTests.m; sourceTree = "<group>"; };
+		6DBB55AE22A1A305006A4015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DF5764222B1AE1B00638A0F /* SEGVideoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGVideoModel.h; sourceTree = "<group>"; };
+		6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGVideoModel.m; sourceTree = "<group>"; };
+		7E5D9AA91658A394424269F7 /* Pods-Segment-Nielsen-DTVR_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Nielsen-DTVR_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Segment-Nielsen-DTVR_Tests/Pods-Segment-Nielsen-DTVR_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		7FEC79A58B0CFE29E6FB8991 /* Pods-Segment-Nielsen-DTVR_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Nielsen-DTVR_Tests.release.xcconfig"; path = "Target Support Files/Pods-Segment-Nielsen-DTVR_Tests/Pods-Segment-Nielsen-DTVR_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		BF0651685CE6DA466178C87C /* Pods-Segment-Nielsen-DTVR_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Nielsen-DTVR_Example.debug.xcconfig"; path = "Target Support Files/Pods-Segment-Nielsen-DTVR_Example/Pods-Segment-Nielsen-DTVR_Example.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6DBB558D22A1A303006A4015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E6DD7221DCCEA25F2A51398 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */,
+				2C96480DB1A2E4FEFD2DC1D0 /* Pods_Segment_Nielsen_DTVR_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DBB55A522A1A305006A4015 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CACD3667E641A332538C9B0E /* Pods_Segment_Nielsen_DTVR_Tests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C90BA8C5670D3744DA3EA20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF0651685CE6DA466178C87C /* Pods-Segment-Nielsen-DTVR_Example.debug.xcconfig */,
+				3F0344AAC2D1FF65493E37A3 /* Pods-Segment-Nielsen-DTVR_Example.release.xcconfig */,
+				7E5D9AA91658A394424269F7 /* Pods-Segment-Nielsen-DTVR_Tests.debug.xcconfig */,
+				7FEC79A58B0CFE29E6FB8991 /* Pods-Segment-Nielsen-DTVR_Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6D2D4D4222A84B57009530CD /* Segment-Nielsen-DTVR */ = {
+			isa = PBXGroup;
+			children = (
+				6D2D4D4922A84B57009530CD /* Assets */,
+				6D2D4D4322A84B57009530CD /* Classes */,
+			);
+			name = "Segment-Nielsen-DTVR";
+			path = "../Segment-Nielsen-DTVR";
+			sourceTree = "<group>";
+		};
+		6D2D4D4322A84B57009530CD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6D2D4D4422A84B57009530CD /* .gitkeep */,
+				6D2D4D4522A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.h */,
+				6D2D4D4822A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m */,
+				6D2D4D4722A84B57009530CD /* SEGNielsenDTVRIntegration.h */,
+				6D2D4D4622A84B57009530CD /* SEGNielsenDTVRIntegration.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		6D2D4D4922A84B57009530CD /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				6D2D4D4A22A84B57009530CD /* .gitkeep */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		6D69131522A1AC0D004D7F1A /* Segment-Nielsen-DTVR_Example */ = {
+			isa = PBXGroup;
+			children = (
+				6DA0915022B05CE200BD47AD /* Supporting Files */,
+				6D69131922A1AC0D004D7F1A /* LaunchScreen.storyboard */,
+				6D69131B22A1AC0D004D7F1A /* Main.storyboard */,
+				6D69131622A1AC0D004D7F1A /* AppDelegate.h */,
+				6D69131E22A1AC0D004D7F1A /* AppDelegate.m */,
+				6DA0914C22B0572F00BD47AD /* SEGNielsenMainViewController.h */,
+				6DA0914B22B0572F00BD47AD /* SEGNielsenMainViewController.m */,
+				6DA0915122B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.h */,
+				6DA0915222B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m */,
+				6DF5764222B1AE1B00638A0F /* SEGVideoModel.h */,
+				6DF5764322B1AE1B00638A0F /* SEGVideoModel.m */,
+				6DAE1BFD22C18DF700F1BAC0 /* SEGNielsenWebViewController.h */,
+				6DAE1BFE22C18DF700F1BAC0 /* SEGNielsenWebViewController.m */,
+			);
+			path = "Segment-Nielsen-DTVR_Example";
+			sourceTree = "<group>";
+		};
+		6DA0915022B05CE200BD47AD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6D69131722A1AC0D004D7F1A /* Assets.xcassets */,
+				6D69131D22A1AC0D004D7F1A /* main.m */,
+				6D69131F22A1AC0D004D7F1A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DBB559122A1A303006A4015 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DBB559022A1A303006A4015 /* Segment-Nielsen-DTVR_Example.app */,
+				6DBB55A822A1A305006A4015 /* Segment-Nielsen-DTVR_Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6DBB55AB22A1A305006A4015 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6DBB55AC22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m */,
+				6DBB55AE22A1A305006A4015 /* Info.plist */,
+				6D3197A822A613D300DC1AD6 /* Tests-Prefix.pch */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		6DFD0F3822A1A1C4008E6373 = {
+			isa = PBXGroup;
+			children = (
+				6D2D4D4222A84B57009530CD /* Segment-Nielsen-DTVR */,
+				6D69131522A1AC0D004D7F1A /* Segment-Nielsen-DTVR_Example */,
+				6DBB55AB22A1A305006A4015 /* Tests */,
+				6DBB559122A1A303006A4015 /* Products */,
+				4C90BA8C5670D3744DA3EA20 /* Pods */,
+				BB8EF7B9DFA97352E52A12B8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BB8EF7B9DFA97352E52A12B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6D2D4D3222A8487F009530CD /* Pods_Segment_Nielsen_DTVR_Example.framework */,
+				67B1C27EE8BA10109348D433 /* Pods_Segment_Nielsen_DTVR_Example.framework */,
+				01DA55A0DA6F61D8F34BE8DD /* Pods_Segment_Nielsen_DTVR_Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6DBB558F22A1A303006A4015 /* Segment-Nielsen-DTVR_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DBB55C022A1A305006A4015 /* Build configuration list for PBXNativeTarget "Segment-Nielsen-DTVR_Example" */;
+			buildPhases = (
+				0D4A4DA0404A0D9FB3AC0C4D /* [CP] Check Pods Manifest.lock */,
+				6DBB558C22A1A303006A4015 /* Sources */,
+				6DBB558D22A1A303006A4015 /* Frameworks */,
+				6DBB558E22A1A303006A4015 /* Resources */,
+				972192CC122CE6BC1FD13061 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Segment-Nielsen-DTVR_Example";
+			productName = "Segment-Nielsen-DTVR_Example";
+			productReference = 6DBB559022A1A303006A4015 /* Segment-Nielsen-DTVR_Example.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6DBB55A722A1A305006A4015 /* Segment-Nielsen-DTVR_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DBB55C122A1A305006A4015 /* Build configuration list for PBXNativeTarget "Segment-Nielsen-DTVR_Tests" */;
+			buildPhases = (
+				871364952ED2477444E477E9 /* [CP] Check Pods Manifest.lock */,
+				6DBB55A422A1A305006A4015 /* Sources */,
+				6DBB55A522A1A305006A4015 /* Frameworks */,
+				6DBB55A622A1A305006A4015 /* Resources */,
+				CD35B2EB0D1609BCC4AB5379 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DBB55AA22A1A305006A4015 /* PBXTargetDependency */,
+			);
+			name = "Segment-Nielsen-DTVR_Tests";
+			productName = "Segment-Nielsen-DTVR_ExampleTests";
+			productReference = 6DBB55A822A1A305006A4015 /* Segment-Nielsen-DTVR_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6DFD0F3922A1A1C4008E6373 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				TargetAttributes = {
+					6DBB558F22A1A303006A4015 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					6DBB55A722A1A305006A4015 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 6DBB558F22A1A303006A4015;
+					};
+				};
+			};
+			buildConfigurationList = 6DFD0F3C22A1A1C4008E6373 /* Build configuration list for PBXProject "Segment-Nielsen-DTVR" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6DFD0F3822A1A1C4008E6373;
+			productRefGroup = 6DBB559122A1A303006A4015 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6DBB558F22A1A303006A4015 /* Segment-Nielsen-DTVR_Example */,
+				6DBB55A722A1A305006A4015 /* Segment-Nielsen-DTVR_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6DBB558E22A1A303006A4015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D69132422A1AC0D004D7F1A /* Main.storyboard in Resources */,
+				6D69132122A1AC0D004D7F1A /* Assets.xcassets in Resources */,
+				6D69132322A1AC0D004D7F1A /* LaunchScreen.storyboard in Resources */,
+				6D2D4D4B22A84B57009530CD /* .gitkeep in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DBB55A622A1A305006A4015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0D4A4DA0404A0D9FB3AC0C4D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Segment-Nielsen-DTVR_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		871364952ED2477444E477E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Segment-Nielsen-DTVR_Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		972192CC122CE6BC1FD13061 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Example/Pods-Segment-Nielsen-DTVR_Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Example/Pods-Segment-Nielsen-DTVR_Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Example/Pods-Segment-Nielsen-DTVR_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD35B2EB0D1609BCC4AB5379 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Tests/Pods-Segment-Nielsen-DTVR_Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Tests/Pods-Segment-Nielsen-DTVR_Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Segment-Nielsen-DTVR_Tests/Pods-Segment-Nielsen-DTVR_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6DBB558C22A1A303006A4015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DA0915322B0776B00BD47AD /* SEGNielsenVideoPlayerViewController.m in Sources */,
+				6D69132522A1AC0D004D7F1A /* main.m in Sources */,
+				6DAE1BFF22C18DF700F1BAC0 /* SEGNielsenWebViewController.m in Sources */,
+				6DA0914D22B0572F00BD47AD /* SEGNielsenMainViewController.m in Sources */,
+				6D69132622A1AC0D004D7F1A /* AppDelegate.m in Sources */,
+				6D2D4D4D22A84B57009530CD /* SEGNielsenDTVRIntegrationFactory.m in Sources */,
+				6DF5764422B1AE1B00638A0F /* SEGVideoModel.m in Sources */,
+				6D2D4D4C22A84B57009530CD /* SEGNielsenDTVRIntegration.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DBB55A422A1A305006A4015 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DBB55AD22A1A305006A4015 /* Segment_Nielsen_DTVR_ExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DBB55AA22A1A305006A4015 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6DBB558F22A1A303006A4015 /* Segment-Nielsen-DTVR_Example */;
+			targetProxy = 6DBB55A922A1A305006A4015 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6D69131922A1AC0D004D7F1A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D69131A22A1AC0D004D7F1A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6D69131B22A1AC0D004D7F1A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6D69131C22A1AC0D004D7F1A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6DBB55BA22A1A305006A4015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF0651685CE6DA466178C87C /* Pods-Segment-Nielsen-DTVR_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Analytics\"",
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Analytics/Analytics.framework/Headers\"",
+				);
+				INFOPLIST_FILE = "Segment-Nielsen-DTVR_Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.Segment-Nielsen-DTVR-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6DBB55BB22A1A305006A4015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F0344AAC2D1FF65493E37A3 /* Pods-Segment-Nielsen-DTVR_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Segment-Nielsen-DTVR_Example/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.Segment-Nielsen-DTVR-Example";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DBB55BC22A1A305006A4015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E5D9AA91658A394424269F7 /* Pods-Segment-Nielsen-DTVR_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Analytics/Analytics.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Expecta/Expecta.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OCHamcrest/OCHamcrest.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/OCMockito/OCMockito.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Specta/Specta.framework/Headers\"",
+					/Frameworks/NielsenAppApi/Headers/,
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.Segment-Nielsen-DTVR-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Segment-Nielsen-DTVR_Example.app/Segment-Nielsen-DTVR_Example";
+			};
+			name = Debug;
+		};
+		6DBB55BD22A1A305006A4015 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FEC79A58B0CFE29E6FB8991 /* Pods-Segment-Nielsen-DTVR_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.Segment-Nielsen-DTVR-ExampleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Segment-Nielsen-DTVR_Example.app/Segment-Nielsen-DTVR_Example";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6DFD0F3D22A1A1C4008E6373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		6DFD0F3E22A1A1C4008E6373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6DBB55C022A1A305006A4015 /* Build configuration list for PBXNativeTarget "Segment-Nielsen-DTVR_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DBB55BA22A1A305006A4015 /* Debug */,
+				6DBB55BB22A1A305006A4015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DBB55C122A1A305006A4015 /* Build configuration list for PBXNativeTarget "Segment-Nielsen-DTVR_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DBB55BC22A1A305006A4015 /* Debug */,
+				6DBB55BD22A1A305006A4015 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DFD0F3C22A1A1C4008E6373 /* Build configuration list for PBXProject "Segment-Nielsen-DTVR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DFD0F3D22A1A1C4008E6373 /* Debug */,
+				6DFD0F3E22A1A1C4008E6373 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6DFD0F3922A1A1C4008E6373 /* Project object */;
+}
