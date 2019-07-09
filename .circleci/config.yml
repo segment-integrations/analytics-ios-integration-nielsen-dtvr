@@ -1,21 +1,20 @@
 version: 2
 
 jobs:
-  cofig_creds:
-    - run:
-        name: Add Nielsen credentials
-        command: |
-          cat << EOF > .netrc
-          machine $NIELSEN_MACHINE
-          login $NIELSEN_SDK_LOGIN
-          password $NIELSEN_SDK_PASSWORD
-          EOF
   build_and_test:
     macos:
       xcode: "9.4.1"
     steps:
       - checkout
       - run: xcrun simctl list
+      - run:
+          name: Add Nielsen credentials
+          command: |
+            cat << EOF > .netrc
+            machine $NIELSEN_MACHINE
+            login $NIELSEN_SDK_LOGIN
+            password $NIELSEN_SDK_PASSWORD
+            EOF
       - run:
           name: Install build dependencies
           command: |
