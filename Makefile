@@ -1,9 +1,9 @@
 XCPRETTY := xcpretty -c && exit ${PIPESTATUS[0]}
 
 SDK ?= "iphonesimulator"
-DESTINATION ?= "platform=iOS Simulator,name=iPhone 5"
+DESTINATION ?= "platform=iOS Simulator,name=iPhone 7"
 PROJECT := Segment-Nielsen-DTVR
-XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
+XC_ARGS := -scheme $(PROJECT)_Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
 
 install: Example/Podfile Segment-Nielsen-DTVR.podspec
 	pod repo update

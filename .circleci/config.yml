@@ -11,18 +11,18 @@ jobs:
           name: Add Nielsen credentials
           command: |
             cat << EOF > .netrc
-            machine $NIELSEN_MACHINE
-            login $NIELSEN_SDK_LOGIN
-            password $NIELSEN_SDK_PASSWORD
+              machine $NIELSEN_MACHINE
+              login $NIELSEN_SDK_LOGIN
+              password $NIELSEN_SDK_PASSWORD
             EOF
       - run:
           name: Install build dependencies
           command: |
             sudo gem install xcpretty
             sudo gem install cocoapods -v 1.6.1
-      # - run:
-      #     name: Fetch Cocoapods specs
-      #     command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Fetch Cocoapods specs
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
 
       - run: make install
       - run: make build
