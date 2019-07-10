@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name          = 'Segment-Nielsen-DTVR'
-    s.version       = '0.0.1-beta'
+    s.version       = '0.0.1'
     s.summary       = 'Nielsen DTVR Integration for Segment'
     s.description   = <<-DESC
     Analytics for iOS. This is the Nielsen DTVR integration for the iOS library.
