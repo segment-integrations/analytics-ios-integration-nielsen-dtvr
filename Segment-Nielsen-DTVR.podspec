@@ -12,7 +12,5 @@ Pod::Spec.new do |s|
     s.social_media_url  = 'https://twitter.com/segment'
     s.ios.deployment_target = '8.0'
     s.preserve_paths = 'Segment-Nielsen-DTVR/Classes/**/*'
-    s.public_header_files = 'Segment-Nielsen-DTVR/Classes/**/*.h'
     s.dependency 'Analytics', '~> 3.6'
 end
-
