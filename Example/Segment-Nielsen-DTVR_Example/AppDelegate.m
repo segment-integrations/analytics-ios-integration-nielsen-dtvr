@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>
+#import "SEGNielsenDTVRIntegrationFactory.h"
 
 @interface AppDelegate ()
 
