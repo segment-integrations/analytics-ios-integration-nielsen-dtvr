@@ -6,8 +6,8 @@
 //
 
 #import <WebKit/WKNavigationDelegate.h>
-#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>
-#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegration.h>
+#import "SEGNielsenDTVRIntegrationFactory.h"
+#import "SEGNielsenDTVRIntegration.h"
 #import "SEGNielsenWebViewController.h"
 
 @interface SEGNielsenWebViewController () <WKNavigationDelegate>

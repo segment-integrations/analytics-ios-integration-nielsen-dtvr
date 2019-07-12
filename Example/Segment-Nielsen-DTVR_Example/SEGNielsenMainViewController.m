@@ -8,8 +8,8 @@
 #import <AVKit/AVPlayerViewController.h>
 #import <Analytics/SEGAnalytics.h>
 #import <Analytics/SEGIntegrationsManager.h>
-#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegrationFactory.h>
-#import <Segment-Nielsen-DTVR/SEGNielsenDTVRIntegration.h>
+#import "SEGNielsenDTVRIntegrationFactory.h"
+#import "SEGNielsenDTVRIntegration.h"
 #import "SEGVideoModel.h"
 #import "SEGNielsenMainViewController.h"
 #import "SEGNielsenVideoPlayerViewController.h"
