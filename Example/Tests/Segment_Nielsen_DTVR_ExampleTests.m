@@ -96,6 +96,25 @@ describe(@"SEGNielsenDTVRIntegration", ^{
                                                       @"adModel": @""
                                                       }];
         });
+
+        it(@"tracks loadMetadata properly with key loadType", ^{
+            SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"Video Content Started"
+                                                                   properties:@{
+                                                                                @"asset_id" : @"1234",
+                                                                                @"channel": @"defaultChannelName",
+                                                                                @"loadType": @"linear"
+                                                                                }
+                                                                      context:@{}
+                                                                 integrations:@{}
+                                        ];
+            [integration track:payload];
+            
+            [verify(mockNielsenAppApi) loadMetadata:@{
+                                                      @"channelName" : @"defaultChannelName",
+                                                      @"type": @"content",
+                                                      @"adModel": @"1"
+                                                      }];
+        });
     });
     
     

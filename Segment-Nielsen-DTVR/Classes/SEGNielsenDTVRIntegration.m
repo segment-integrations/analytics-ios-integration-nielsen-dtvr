@@ -100,7 +100,13 @@
                                            withHandler:^void (NielsenAppApi *nielsen, SEGTrackPayload *payload) {
                                                NSDictionary *properties = payload.properties;
                                                
-                                               NSString *loadType = properties[@"load_type"];
+                                               NSString *value;
+                                               if ([properties valueForKey:"@loadType"]) {
+                                                   value = [properties valueForKey:"@loadType"]
+                                               } else if (properties valueForKey:"@load_type"]) {
+                                                   value = properties valueForKey:"@load_type"]
+                                               }
+                                               
                                                NSString *adModel;
                                                if ([loadType isEqualToString:@"linear"]) {
                                                    adModel = @"1";
