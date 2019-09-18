@@ -1,5 +1,9 @@
 Change Log
 ==========
+Version 0.0.3 *(18th September, 2019)*
+-------------------------------------------
+Maps Segment `loadType`, falling back to `load_type`, to Nielsen `adModel` field.
+
 Version 0.0.2 *(12th July, 2019)*
 -------------------------------------------
 Fix example app import paths.
