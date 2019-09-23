@@ -1,5 +1,9 @@
 Change Log
 ==========
+Version 0.0.4 *(23rd September, 2019)*
+-------------------------------------------
+Fixes a syntax issue with `loadType` that may cause an Xcode build error.
+
 Version 0.0.3 *(18th September, 2019)*
 -------------------------------------------
 Maps Segment `loadType`, falling back to `load_type`, to Nielsen `adModel` field.
