@@ -101,17 +101,17 @@
                                                NSDictionary *properties = payload.properties;
                                                
                                                NSString *value;
-                                               if ([properties valueForKey:"@loadType"]) {
-                                                   value = [properties valueForKey:"@loadType"]
-                                               } else if (properties valueForKey:"@load_type"]) {
-                                                   value = properties valueForKey:"@load_type"]
+                                               if ([properties valueForKey:@"loadType"]) {
+                                                   value = [properties valueForKey:@"loadType"];
+                                               } else if ([properties valueForKey:@"load_type"]) {
+                                                   value = [properties valueForKey:@"load_type"];
                                                }
                                                
                                                NSString *adModel;
-                                               if ([loadType isEqualToString:@"linear"]) {
+                                               if ([value isEqualToString:@"linear"]) {
                                                    adModel = @"1";
                                                }
-                                               else if([loadType isEqualToString:@"dynamic"]) {
+                                               else if([value isEqualToString:@"dynamic"]) {
                                                    adModel = @"2";
                                                }
                                                
