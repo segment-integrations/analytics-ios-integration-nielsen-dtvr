@@ -1,4 +1,4 @@
-XCPRETTY := xcpretty -c &&
+XCPRETTY := xcpretty -c
 
 SDK ?= "iphonesimulator"
 DESTINATION ?= "platform=iOS Simulator,name=iPhone 8"
