@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name          = 'Segment-Nielsen-DTVR'
-    s.version       = '0.0.4'
+    s.version       = '0.0.5'
     s.summary       = 'Nielsen DTVR Integration for Segment'
     s.description   = <<-DESC
     Analytics for iOS. This is the Nielsen DTVR integration for the iOS library.
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
     s.social_media_url  = 'https://twitter.com/segment'
     s.ios.deployment_target = '8.0'
     s.preserve_paths = 'Segment-Nielsen-DTVR/Classes/**/*'
-    s.dependency 'Analytics', '~> 3.6'
+    s.dependency 'Analytics'
 end
