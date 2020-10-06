@@ -6,12 +6,12 @@
 //
 
 #import <AVKit/AVPlayerViewController.h>
-#if defined(__has_include) && __has_include(<Analytics/Analytics.h>)
+#if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
 #import <Analytics/SEGAnalytics.h>
 #else
 #import <Segment/SEGAnalytics.h>
 #endif
-#if defined(__has_include) && __has_include(<Analytics/Analytics.h>)
+#if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
 #import <Analytics/SEGIntegrationsManager.h>
 #else
 #import <Segment/SEGIntegrationsManager.h>
