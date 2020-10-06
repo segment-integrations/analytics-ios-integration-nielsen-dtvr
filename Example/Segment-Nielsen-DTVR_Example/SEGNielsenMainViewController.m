@@ -6,8 +6,16 @@
 //
 
 #import <AVKit/AVPlayerViewController.h>
+#if defined(__has_include) && __has_include(<Analytics/Analytics.h>)
 #import <Analytics/SEGAnalytics.h>
+#else
+#import <Segment/SEGAnalytics.h>
+#endif
+#if defined(__has_include) && __has_include(<Analytics/Analytics.h>)
 #import <Analytics/SEGIntegrationsManager.h>
+#else
+#import <Segment/SEGIntegrationsManager.h>
+#endif
 #import "SEGNielsenDTVRIntegrationFactory.h"
 #import "SEGNielsenDTVRIntegration.h"
 #import "SEGVideoModel.h"
