@@ -9,12 +9,9 @@
 #import "SEGNielsenDTVRIntegration.h"
 #if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
 #import <Analytics/SEGIntegration.h>
-#else
-#import <Segment/SEGIntegration.h>
-#endif
-#if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
 #import <Analytics/SEGAnalytics.h>
 #else
+#import <Segment/SEGIntegration.h>
 #import <Segment/SEGAnalytics.h>
 #endif
 
