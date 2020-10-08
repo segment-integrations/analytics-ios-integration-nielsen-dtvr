@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 0.0.6 *(8th October, 2020)*
+-------------------------------------------
+
+ * Update SEGAnalytics import to support new namespacing introduced in `analytics-ios` v4.x
+
 Version 0.0.5 *(21st June, 2020)*
 -------------------------------------------
 * Relaxes Segment Analytics library dependency.
