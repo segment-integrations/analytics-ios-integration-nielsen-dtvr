@@ -63,10 +63,7 @@ Static Framework - `source 'https://github.com/NielsenDigitalSDK/nielsenappsdk-i
 
 3. Add the pod to your Podfile:
 
-```ruby
-pod "Segment-Nielsen-DTVR", :git => 'https://github.com/segment-integrations/analytics-ios-integration-nielsen-dcr.git', :tag => '1.4.0'
-```
-
+`pod NielsenAppSDK`
 
 There are several other pods available, and can be found in the [Nielsen Digital Measurement iOS Artifactory Guide](https://engineeringportal.nielsen.com/docs/Digital_Measurement_iOS_Artifactory_Guide)
 
