@@ -6,12 +6,30 @@ The Nielsen App SDK as of version 6.0.0.0 is compatible with iOS 8.0 and above.
 
 The Segment-Nielsen DTVR SDK is available on [CocoaPods](http://cocoapods.org). Add the following line to your Podfile:
 
-```
-pod "Segment-Nielsen-DTVR"
+```ruby
+pod "Segment-Nielsen-DTVR", :git => 'https://github.com/segment-integrations/analytics-ios-integration-nielsen-dtvr.git', :tag => '1.4.0'
 ```
 
 The integration relies on the Nielsen App SDK framework, which can either be installed via CocoaPods or by manually adding the framework.
 You will need to have a Nielsen representative before getting started.
+
+## Xcode 12
+
+The Nielsen Cocoapod (8.0.0.0) specifies iOS 8.0 as its minimum target.  This has the negative effect of generating ones Cocoapod workspace with invalid values.  To fix this, the following script can be added to the end of the `Podfile`:
+
+```
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+    end
+  end
+end
+```
+
+This will remove the deployment target settings and fall back to what has been specified within the Xcode Project itself.
+
+It should also be noted that the Nielsen Cocoapod does not include an `arm64` slice.  It may be necessary for  `EXCLUDED_ARCHS[sdk=iphonesimulator*]` to be set to exclude `arm64` in your project.
 
 ### CocoaPods
 

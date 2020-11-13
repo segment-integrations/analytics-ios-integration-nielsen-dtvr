@@ -13,10 +13,15 @@
 
 #ifdef __OBJC__
 
+#if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
+#import <Analytics/SEGAnalytics.h>
+#else
+#import <Segment/SEGAnalytics.h>
+#endif
+
 #import <Specta/Specta.h>
 #import <Expecta/Expecta.h>
 #import <OCMockito/OCMockito.h>
-#import <Analytics/SEGAnalytics.h>
 #import <NielsenAppApi/NielsenAppApi.h>
 #import "SEGNielsenDTVRIntegrationFactory.h"
 #import "SEGNielsenDTVRIntegration.h"

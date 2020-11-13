@@ -6,8 +6,13 @@
 //
 
 #import <AVFoundation/AVFoundation.h>
-#import <Analytics/SEGAnalytics.h>
 #import "SEGNielsenVideoPlayerViewController.h"
+
+#if defined(__has_include) && __has_include(<Analytics/SEGAnalytics.h>)
+#import <Analytics/SEGAnalytics.h>
+#else
+#import <Segment/SEGAnalytics.h>
+#endif
 
 static char TimedMetadataObserverContext = 0;
 
