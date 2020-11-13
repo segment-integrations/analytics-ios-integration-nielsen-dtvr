@@ -1,9 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.0 *(13th November, 2020)*
+-------------------------------------------
+* Updates Nielsen SDK to 8.x
+* Fixes out-of-the-box compilation issues when used as a pod.
+
 Version 0.0.6 *(8th October, 2020)*
 -------------------------------------------
-
  * Update SEGAnalytics import to support new namespacing introduced in `analytics-ios` v4.x
 
 Version 0.0.5 *(21st June, 2020)*
