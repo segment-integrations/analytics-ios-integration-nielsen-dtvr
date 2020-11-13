@@ -9,4 +9,3 @@ Releasing
  5. `git push && git push --tags`.
  
  This pod cannot be pushed to trunk.
-// 6. `pod trunk push Segment-Nielsen-DTVR.podspec --use-libraries`.
