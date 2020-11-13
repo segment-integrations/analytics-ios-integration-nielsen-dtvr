@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name          = 'Segment-Nielsen-DTVR'
-    s.version       = '0.0.6'
+    s.version       = '1.0.0'
     s.summary       = 'Nielsen DTVR Integration for Segment'
     
     s.description   = <<-DESC
