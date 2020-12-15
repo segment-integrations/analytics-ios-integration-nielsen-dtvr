@@ -142,19 +142,13 @@
                                                             @"Video Playback Buffer Started",
                                                             @"Video Playback Seek Started",
                                                             @"Video Content Completed",
-                                                            @"Application Backgrounded"
+                                                            @"Application Backgrounded",
+                                                            @"Video Playback Completed",
+                                                            @"Video Playback Exited"
                                                             ]
                                            withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
                                                [nielsen stop];
                                            }];
-    
-    SEGNielsenEventHandler *endHandler = [[SEGNielsenEventHandler alloc]
-                                          initWithEvents:@[
-                                                           @"Video Playback Completed"
-                                                           ]
-                                          withHandler:^(NielsenAppApi *nielsen, SEGTrackPayload *payload) {
-                                              [nielsen end];
-                                          }];
     
     // This is marked as required in the destination settings
     NSArray<NSString *> *sendID3EventNames = self.settings[@"sendId3Events"] ?: @[];
@@ -174,7 +168,6 @@
                            startHandler,
                            playHandler,
                            stopHandler,
-                           endHandler,
                            sendID3Handler
                            ];
 }
