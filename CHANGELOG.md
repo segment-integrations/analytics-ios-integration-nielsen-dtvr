@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.1 *(7th April, 2021)*
+-------------------------------------------
+* Updates `Video Playback Completed` to call `stop`.
+* Maps `Video Playback Exited` to call `stop` .
+* Removes `end` handler as per Nielsen's requirements to use `stop` instead.
+
 Version 1.0.0 *(13th November, 2020)*
 -------------------------------------------
 * Updates Nielsen SDK to 8.x

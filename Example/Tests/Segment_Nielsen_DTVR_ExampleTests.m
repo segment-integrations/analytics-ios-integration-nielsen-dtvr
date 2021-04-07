@@ -260,7 +260,22 @@ describe(@"SEGNielsenDTVRIntegration", ^{
         
         [integration track:payload];
         
-        [(NielsenAppApi *)verify(mockNielsenAppApi) end];
+        [(NielsenAppApi *)verify(mockNielsenAppApi) stop];
+    });
+    
+    it(@"tracks Video Playback Exited", ^{
+        SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:@"Video Playback Exited"
+                                                               properties:@{
+                                                                            @"asset_id" : @"1234",
+                                                                            @"channel": @"defaultChannelName",
+                                                                            }
+                                                                  context:@{}
+                                                             integrations:@{}
+                                    ];
+        
+        [integration track:payload];
+        
+        [(NielsenAppApi *)verify(mockNielsenAppApi) stop];
     });
     
     it(@"tracks Application Backgrounded", ^{
