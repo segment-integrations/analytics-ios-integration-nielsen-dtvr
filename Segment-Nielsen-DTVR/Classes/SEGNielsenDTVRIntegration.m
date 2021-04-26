@@ -6,7 +6,7 @@
 //
 
 #import "SEGNielsenDTVRIntegration.h"
-#import "SEGTrackPayload.h"
+#import <Segment/SEGTrackPayload.h>
 #import <NielsenAppApi/NielsenAppApi.h>
 
 #pragma mark Event Handlers
