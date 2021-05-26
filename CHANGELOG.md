@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 1.0.2 *(26th May, 2021)*
+-------------------------------------------
+* Update SEGTrackPayload import to support `generate_multiple_pod_projects` option.
+
 Version 1.0.1 *(7th April, 2021)*
 -------------------------------------------
 * Updates `Video Playback Completed` to call `stop`.

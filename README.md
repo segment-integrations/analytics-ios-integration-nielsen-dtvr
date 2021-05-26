@@ -7,7 +7,7 @@ The Nielsen App SDK as of version 6.0.0.0 is compatible with iOS 8.0 and above.
 The Segment-Nielsen DTVR SDK is not available through [CocoaPods](http://cocoapods.org) trunk due to Nielsen's SDK being in a private spec repo. To install the Segment-Nielsen-DTVR pod, add the following line to your Podfile:
 
 ```ruby
-pod "Segment-Nielsen-DTVR", :git => 'https://github.com/segment-integrations/analytics-ios-integration-nielsen-dtvr.git', :tag => '1.0.1'
+pod "Segment-Nielsen-DTVR", :git => 'https://github.com/segment-integrations/analytics-ios-integration-nielsen-dtvr.git', :tag => '1.0.2'
 ```
 
 The integration relies on the Nielsen App SDK framework, which can either be installed via CocoaPods or by manually adding the framework.
