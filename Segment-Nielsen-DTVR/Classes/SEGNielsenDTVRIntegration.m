@@ -6,7 +6,11 @@
 //
 
 #import "SEGNielsenDTVRIntegration.h"
+#if __has_include(<Segment/SEGTrackPayload.h>)
+#import <Segment/SEGTrackPayload.h>
+#else
 #import "SEGTrackPayload.h"
+#endif
 #import <NielsenAppApi/NielsenAppApi.h>
 
 #pragma mark Event Handlers
